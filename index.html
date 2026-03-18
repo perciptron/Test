@@ -58,7 +58,9 @@
             </h1>
 
             <p class="hero-subtitle">
-                6-часовая онлайн-конференция по реальным стратегиям инвестирования в недвижимость.
+                Онлайн-конференция по реальным стратегиям инвестирования в недвижимость.
+            </p>
+            <p class="hero-subtitle">
                 Кейсы инвесторов, практические модели заработка и доходность от 20 до 100% годовых.
             </p>
 
@@ -186,6 +188,8 @@
     </div>
 </section>
 
+<div class="inline-cta"><button class="btn-primary" onclick="openModal()">Зарегистрироваться бесплатно &rarr;</button></div>
+
 <!-- ===== SPEAKERS ===== -->
 <section class="section speakers" id="speakers" aria-label="Спикеры">
     <div class="section-inner">
@@ -193,97 +197,38 @@
         <h2 class="section-title">5 практикующих инвесторов</h2>
         <p class="section-desc">Каждый спикер инвестирует собственные деньги. Только личный опыт, реальные сделки и проверенные стратегии.</p>
 
-        <div class="speakers-grid">
-            <div class="speaker-card featured reveal">
-                <img src="images/tolstyakov-speaker.jpg" alt="Дмитрий Толстяков" class="speaker-photo" loading="lazy">
-                <div class="speaker-photo-placeholder" style="display:none;">
-                    <div class="speaker-initials">ДТ</div>
-                </div>
-                <div class="speaker-info">
-                    <div class="speaker-time">10:00 - 10:30 &amp; 15:00</div>
-                    <div class="speaker-name">Дмитрий Толстяков</div>
-                    <div class="speaker-role">Ведущий конференции</div>
-                    <div class="speaker-topic">Открытие и закрытие конференции</div>
-                    <div class="speaker-bio">
-                        <ul>
-                            <li>Эксперт по инвестициям и семейным финансам</li>
-                            <li>Преподаватель Школы инвестиций FIN-RA</li>
-                            <li>Обучает инвестициям с 2007 года</li>
-                            <li>Инвестирует собственными деньгами во все представленные проекты</li>
-                        </ul>
+        <div class="speakers-carousel">
+            <div class="speakers-track">
+                <div class="speaker-card-h">
+                    <img src="images/firsov.jpg" alt="Максим Фирсов" class="speaker-photo-h" loading="lazy">
+                    <div class="speaker-info-h">
+                        <div class="speaker-name">Максим Фирсов</div>
+                        <div class="speaker-role">Основатель АН &laquo;Свои&raquo; в Крыму</div>
+                        <div class="speaker-topic">Курортная недвижимость Крыма</div>
                     </div>
                 </div>
-            </div>
-
-            <div class="speaker-card reveal">
-                <img src="images/firsov.jpg" alt="Максим Фирсов" class="speaker-photo" loading="lazy">
-                <div class="speaker-photo-placeholder" style="display:none;">
-                    <div class="speaker-initials">МФ</div>
-                </div>
-                <div class="speaker-info">
-                    <div class="speaker-time">10:30 - 11:30</div>
-                    <div class="speaker-name">Максим Фирсов</div>
-                    <div class="speaker-role">Основатель АН &laquo;Свои&raquo; в Крыму</div>
-                    <div class="speaker-topic">Стратегии инвестирования в курортную недвижимость Крыма</div>
-                    <div class="speaker-bio">
-                        <ul>
-                            <li>Собственник международной компании недвижимости &laquo;Arbat Real Estate&raquo;</li>
-                            <li>Спикер Международного жилищного конгресса (Москва)</li>
-                            <li>Наставник в международном проекте &laquo;Терра Таиланд&raquo; (Пхукет)</li>
-                        </ul>
+                <div class="speaker-card-h">
+                    <img src="images/ardonskaya.jpg" alt="Наталья Ардонская" class="speaker-photo-h" loading="lazy">
+                    <div class="speaker-info-h">
+                        <div class="speaker-name">Наталья Ардонская</div>
+                        <div class="speaker-role">Эксперт по инвестициям в кладовые</div>
+                        <div class="speaker-topic">Кладовые как инвестиционный актив</div>
                     </div>
                 </div>
-            </div>
-
-            <div class="speaker-card reveal">
-                <img src="images/ardonskaya.jpg" alt="Наталья Ардонская" class="speaker-photo" loading="lazy">
-                <div class="speaker-info">
-                    <div class="speaker-time">11:30 - 12:30</div>
-                    <div class="speaker-name">Наталья Ардонская</div>
-                    <div class="speaker-role">Эксперт по инвестициям в кладовые помещения</div>
-                    <div class="speaker-topic">Кладовые помещения как инвестиционный актив</div>
-                    <div class="speaker-bio">
-                        <ul>
-                            <li>Как работает ниша кладовых помещений</li>
-                            <li>Каким образом небольшие объекты приносят стабильный доход</li>
-                        </ul>
+                <div class="speaker-card-h">
+                    <div class="speaker-photo-placeholder-h"><div class="speaker-initials">АР</div></div>
+                    <div class="speaker-info-h">
+                        <div class="speaker-name">Антон Ребриков</div>
+                        <div class="speaker-role">Эксперт по инвестициям в землю</div>
+                        <div class="speaker-topic">Земля в Крыму в складчину</div>
                     </div>
                 </div>
-            </div>
-
-            <div class="speaker-card reveal">
-                <div class="speaker-photo-placeholder">
-                    <div class="speaker-initials">АР</div>
-                </div>
-                <div class="speaker-info">
-                    <div class="speaker-time">12:30 - 13:30</div>
-                    <div class="speaker-name">Антон Ребриков</div>
-                    <div class="speaker-role">Эксперт по инвестициям в землю, г. Симферополь</div>
-                    <div class="speaker-topic">Инвестиции в землю в Крыму в складчину</div>
-                    <div class="speaker-bio">
-                        <ul>
-                            <li>Как инвестировать в земельные участки совместно</li>
-                            <li>Рост стоимости 30-50% в год</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="speaker-card reveal">
-                <img src="images/kirienko.jpg" alt="Евгений Кириенко" class="speaker-photo" loading="lazy">
-                <div class="speaker-photo-placeholder" style="display:none;">
-                    <div class="speaker-initials">ЕК</div>
-                </div>
-                <div class="speaker-info">
-                    <div class="speaker-time">13:30 - 14:30</div>
-                    <div class="speaker-name">Евгений Кириенко</div>
-                    <div class="speaker-role">Агент по недвижимости на Пхукете</div>
-                    <div class="speaker-topic">Недвижимость Таиланда</div>
-                    <div class="speaker-bio">
-                        <ul>
-                            <li>Обзор доходности и проектов на Пхукете</li>
-                            <li>Возможности инвестирования в стране с одной из самых низких инфляций</li>
-                        </ul>
+                <div class="speaker-card-h">
+                    <img src="images/kirienko.jpg" alt="Евгений Кириенко" class="speaker-photo-h" loading="lazy">
+                    <div class="speaker-info-h">
+                        <div class="speaker-name">Евгений Кириенко</div>
+                        <div class="speaker-role">Агент по недвижимости на Пхукете</div>
+                        <div class="speaker-topic">Недвижимость Таиланда</div>
                     </div>
                 </div>
             </div>
@@ -292,19 +237,18 @@
 </section>
 
 <!-- ===== PULL QUOTE ===== -->
-<section class="pull-quote" aria-label="Цитата">
-    <div class="diamond-divider" aria-hidden="true"><div class="diamond"></div></div>
+<section class="pull-quote pull-quote--compact" aria-label="Цитата">
     <blockquote>Пусть финансово сильных семей станет больше</blockquote>
     <cite>Дмитрий Толстяков, основатель FIN-RA</cite>
-    <div class="diamond-divider" aria-hidden="true"><div class="diamond"></div></div>
 </section>
+
+<div class="inline-cta"><button class="btn-primary" onclick="openModal()">Зарегистрироваться бесплатно &rarr;</button></div>
 
 <!-- ===== PROGRAM ===== -->
 <section class="section program" id="program" aria-label="Программа">
     <div class="section-inner">
         <div class="section-label">Программа</div>
         <h2 class="section-title">6 часов практики и кейсов</h2>
-        <p class="section-desc">Каждый спикер — практикующий инвестор. Реальные сделки, цифры и модели заработка.</p>
 
         <div class="timeline">
             <div class="timeline-item reveal">
@@ -388,9 +332,7 @@
 <!-- ===== FOR WHOM ===== -->
 <section class="section for-whom" aria-label="Для кого">
     <div class="section-inner">
-        <div class="section-label">Для кого</div>
-        <h2 class="section-title">Эта конференция для вас, если...</h2>
-        <p class="section-desc">Мероприятие подходит как начинающим, так и опытным инвесторам.</p>
+        <h2 class="section-title">Эта конференция для вас, если вы...</h2>
 
         <div class="for-whom-grid">
             <div class="for-whom-card reveal">
@@ -445,6 +387,8 @@
     </div>
 </section>
 
+<div class="inline-cta"><button class="btn-primary" onclick="openModal()">Зарегистрироваться бесплатно &rarr;</button></div>
+
 <!-- ===== PRICING ===== -->
 <section class="section pricing" id="pricing" aria-label="Тарифы">
     <div class="section-inner">
@@ -484,8 +428,7 @@
     <div class="section-inner">
         <div class="faq-layout">
             <div>
-                <div class="section-label">Вопросы и ответы</div>
-                <h2 class="section-title">Часто задаваемые вопросы</h2>
+                <h2 class="section-title">Вопросы и ответы</h2>
                 <p class="section-desc">Не нашли ответ? Напишите нам, и мы обязательно поможем.</p>
             </div>
 
