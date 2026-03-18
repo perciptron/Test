@@ -312,14 +312,14 @@ a:focus-visible {
     display: grid;
     grid-template-columns: 340px 1fr;
     gap: 56px;
-    align-items: center;
+    align-items: stretch;
 }
 .hero-photo-col {
     position: relative;
 }
 .hero-speaker-photo {
     width: 100%;
-    aspect-ratio: 3/4;
+    height: 100%;
     object-fit: cover;
     object-position: center top;
     border-radius: var(--radius-lg);
