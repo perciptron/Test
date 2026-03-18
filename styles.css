@@ -305,7 +305,7 @@ a:focus-visible {
 .hero-layout {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 140px 40px 80px;
+    padding: 140px 40px 120px;
     position: relative;
     z-index: 2;
     display: grid;
