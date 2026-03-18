@@ -504,6 +504,7 @@ a:focus-visible {
     cursor: pointer;
     transition: all 0.3s ease;
     letter-spacing: 0.5px;
+    white-space: nowrap;
 }
 .btn-primary:hover {
     background-position: right center;
@@ -525,6 +526,7 @@ a:focus-visible {
     border: 1px solid rgba(201, 168, 76, 0.3);
     cursor: pointer;
     transition: all 0.3s ease;
+    white-space: nowrap;
 }
 .btn-secondary:hover {
     border-color: var(--gold);
@@ -742,13 +744,13 @@ a:focus-visible {
 }
 .speaker-card-h {
     display: flex;
-    align-items: center;
-    gap: 20px;
+    align-items: flex-start;
+    gap: 24px;
     background: var(--ivory-warm);
     border: 1px solid rgba(0,0,0,0.05);
     border-radius: var(--radius-lg);
-    padding: 16px;
-    min-width: 340px;
+    padding: 28px;
+    min-width: calc(50% - 10px);
     flex-shrink: 0;
     transition: all 0.3s ease;
 }
@@ -757,17 +759,17 @@ a:focus-visible {
     border-color: rgba(201, 168, 76, 0.2);
 }
 .speaker-photo-h {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    border-radius: 16px;
     object-fit: cover;
     object-position: center top;
     flex-shrink: 0;
 }
 .speaker-photo-placeholder-h {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    border-radius: 16px;
     background: linear-gradient(135deg, var(--charcoal-light), var(--slate));
     display: flex;
     align-items: center;
@@ -775,11 +777,33 @@ a:focus-visible {
     flex-shrink: 0;
 }
 .speaker-photo-placeholder-h .speaker-initials {
-    font-size: 20px;
+    font-size: 28px;
 }
 .speaker-info-h {
     flex: 1;
     min-width: 0;
+}
+.speaker-bio-h {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0 0;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+.speaker-bio-h li {
+    padding-left: 14px;
+    position: relative;
+}
+.speaker-bio-h li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--gold);
 }
 .speaker-photo-placeholder::before {
     content: '';
@@ -860,9 +884,7 @@ a:focus-visible {
     text-align: center;
     position: relative;
     overflow: hidden;
-    background-image: url('images/family-bg.jpg');
-    background-size: cover;
-    background-position: center;
+    background: linear-gradient(135deg, var(--charcoal) 0%, #2a2520 50%, var(--charcoal) 100%);
 }
 .pull-quote--compact {
     padding: 48px 40px;
@@ -980,6 +1002,30 @@ a:focus-visible {
     font-size: 18px;
     margin-bottom: 4px;
     color: var(--charcoal);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.timeline-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    flex-shrink: 0;
+}
+.timeline-avatar--placeholder {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--charcoal-light);
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 700;
+    flex-shrink: 0;
 }
 .timeline-role {
     font-size: 15px;
