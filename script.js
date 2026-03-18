@@ -4,6 +4,34 @@ window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 60);
 }, { passive: true });
 
+// ===== BURGER MENU =====
+const burger = document.getElementById('navBurger');
+const mobileMenu = document.getElementById('mobileMenu');
+
+if (burger && mobileMenu) {
+    burger.addEventListener('click', () => {
+        const isOpen = burger.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+        burger.setAttribute('aria-expanded', isOpen);
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            closeMobileMenu();
+        });
+    });
+}
+
+window.closeMobileMenu = function() {
+    if (burger && mobileMenu) {
+        burger.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        burger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+    }
+};
+
 // ===== FAQ ACCORDION =====
 document.querySelectorAll('.faq-question').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -96,28 +124,30 @@ document.querySelectorAll('.hero-stat-number, .about-highlight-number').forEach(
     if (/\d/.test(el.textContent)) counterObserver.observe(el);
 });
 
-// ===== SALEBOT POPUP =====
-const overlay = document.getElementById('salebotOverlay');
-const popup = overlay.querySelector('.salebot-popup');
+// ===== MODAL POPUP (per TZ) =====
+const modalOverlay = document.getElementById('modalOverlay');
 
-window.openSalebotPopup = function() {
-    overlay.classList.add('active');
+window.openModal = function() {
+    modalOverlay.classList.add('active');
     document.body.style.overflow = 'hidden';
     // Focus trap
-    const focusable = popup.querySelectorAll('input, button, a, select, textarea');
+    const modal = modalOverlay.querySelector('.modal');
+    const focusable = modal.querySelectorAll('input, button, a, select, textarea');
     if (focusable.length) focusable[0].focus();
 };
 
-window.closeSalebotPopup = function(e, force) {
-    if (force || e.target === overlay) {
-        overlay.classList.remove('active');
-        document.body.style.overflow = '';
-    }
+window.closeModal = function() {
+    modalOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+};
+
+window.closeModalOutside = function(e) {
+    if (e.target === e.currentTarget) closeModal();
 };
 
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && overlay.classList.contains('active')) {
-        window.closeSalebotPopup(null, true);
+    if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+        closeModal();
     }
 });
 
@@ -129,3 +159,16 @@ document.querySelectorAll('.speaker-photo').forEach(img => {
         if (placeholder) placeholder.style.display = 'flex';
     });
 });
+
+// ===== HERO PARALLAX =====
+window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const mesh = document.querySelector('.hero-mesh');
+    const grid = document.querySelector('.hero-grid');
+    if (mesh && scrollY < window.innerHeight) {
+        mesh.style.transform = `scale(1) translate(0, ${scrollY * 0.15}px)`;
+    }
+    if (grid && scrollY < window.innerHeight) {
+        grid.style.transform = `translateY(${scrollY * 0.08}px)`;
+    }
+}, { passive: true });

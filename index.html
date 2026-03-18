@@ -2,12 +2,12 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <meta name="description" content="Онлайн-конференция по инвестициям в недвижимость. 5 экспертов, 6 часов практики. 28 марта 2026. Бесплатная регистрация.">
     <title>День доходной недвижимости — Онлайн-конференция 28 марта 2026</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Source+Sans+3:wght@300;400;600;700&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=DM+Mono:wght@400;500&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -23,13 +23,25 @@
             <li><a href="#program">Программа</a></li>
             <li><a href="#pricing">Тарифы</a></li>
         </ul>
-        <button class="nav-cta" onclick="openSalebotPopup()">Регистрация</button>
+        <button class="nav-burger" id="navBurger" aria-label="Меню" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+        <button class="nav-cta" onclick="openModal()">Регистрация</button>
     </nav>
 </header>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+    <a href="#speakers" class="mobile-menu-link">Спикеры</a>
+    <a href="#program" class="mobile-menu-link">Программа</a>
+    <a href="#pricing" class="mobile-menu-link">Тарифы</a>
+    <button class="btn-primary" onclick="openModal(); closeMobileMenu();">Регистрация</button>
+</div>
 
 <!-- ===== HERO ===== -->
 <main id="main-content">
 <section class="hero" aria-label="Главный экран">
+    <div class="hero-mesh" aria-hidden="true"></div>
     <div class="hero-grid" aria-hidden="true"></div>
     <div class="hero-corner hero-corner--tl" aria-hidden="true"></div>
     <div class="hero-corner hero-corner--br" aria-hidden="true"></div>
@@ -76,7 +88,7 @@
         </div>
 
         <div class="hero-cta-group">
-            <button class="btn-primary" onclick="openSalebotPopup()">Зарегистрироваться бесплатно &rarr;</button>
+            <button class="btn-primary" onclick="openModal()">Зарегистрироваться бесплатно &rarr;</button>
             <a href="#program" class="btn-secondary">Программа конференции</a>
         </div>
     </div>
@@ -204,7 +216,6 @@
         <p class="section-desc">Каждый спикер инвестирует собственные деньги. Только личный опыт, реальные сделки и проверенные стратегии.</p>
 
         <div class="speakers-grid">
-            <!-- Featured: Дмитрий Толстяков -->
             <div class="speaker-card featured reveal">
                 <img src="images/tolstyakov.jpg" alt="Дмитрий Толстяков" class="speaker-photo" width="400" height="400" loading="lazy">
                 <div class="speaker-photo-placeholder" style="display:none;">
@@ -226,7 +237,6 @@
                 </div>
             </div>
 
-            <!-- Максим Фирсов -->
             <div class="speaker-card reveal">
                 <img src="images/firsov.jpg" alt="Максим Фирсов" class="speaker-photo" width="400" height="320" loading="lazy">
                 <div class="speaker-photo-placeholder" style="display:none;">
@@ -247,7 +257,6 @@
                 </div>
             </div>
 
-            <!-- Наталья Ардонская -->
             <div class="speaker-card reveal">
                 <div class="speaker-photo-placeholder">
                     <div class="speaker-initials">НА</div>
@@ -266,7 +275,6 @@
                 </div>
             </div>
 
-            <!-- Антон Ребриков -->
             <div class="speaker-card reveal">
                 <div class="speaker-photo-placeholder">
                     <div class="speaker-initials">АР</div>
@@ -285,7 +293,6 @@
                 </div>
             </div>
 
-            <!-- Евгений Кириенко -->
             <div class="speaker-card reveal">
                 <img src="images/kirienko.jpg" alt="Евгений Кириенко" class="speaker-photo" width="400" height="320" loading="lazy">
                 <div class="speaker-photo-placeholder" style="display:none;">
@@ -479,7 +486,7 @@
                     <li><span class="check-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Знакомство со спикерами и стратегиями</li>
                     <li class="disabled"><span class="check-icon" aria-hidden="true">—</span>Запись мероприятия</li>
                 </ul>
-                <button class="btn-secondary" onclick="openSalebotPopup()">Зарегистрироваться бесплатно</button>
+                <button class="btn-secondary" onclick="openModal()">Зарегистрироваться бесплатно</button>
             </div>
 
             <div class="pricing-card featured reveal">
@@ -566,18 +573,18 @@
             28 марта. 5 экспертов. 6 часов реальных кейсов по инвестициям в недвижимость.
             Бесплатная регистрация.
         </p>
-        <button class="btn-primary" onclick="openSalebotPopup()">Зарегистрироваться бесплатно &rarr;</button>
+        <button class="btn-primary" onclick="openModal()">Зарегистрироваться бесплатно &rarr;</button>
     </div>
 </section>
 </main>
 
-<!-- ===== SALEBOT POPUP ===== -->
-<div id="salebotOverlay" class="salebot-overlay" role="dialog" aria-modal="true" aria-label="Форма регистрации" onclick="closeSalebotPopup(event)">
-    <div class="salebot-popup">
-        <button class="salebot-close" onclick="closeSalebotPopup(event, true)" aria-label="Закрыть">&times;</button>
-        <div class="salebot-popup-title">Регистрация</div>
-        <div class="salebot-popup-subtitle">Заполните форму и мы пришлём ссылку в Telegram</div>
-        <div id="salebotFormContainer" class="form_integration_block"></div>
+<!-- ===== MODAL POPUP ===== -->
+<div id="modalOverlay" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Форма регистрации" onclick="closeModalOutside(event)">
+    <div class="modal">
+        <button class="modal__close" onclick="closeModal()" aria-label="Закрыть">&times;</button>
+        <div class="modal-title">Регистрация</div>
+        <div class="modal-subtitle">Заполните форму и мы пришлём ссылку в Telegram</div>
+        <div class="form_integration_block"></div>
     </div>
 </div>
 
@@ -587,7 +594,7 @@
 </footer>
 
 <script src="script.js"></script>
-<script src="https://salebot.pro/js/form_scripts.js" async></script>
+<script src="https://salebot.pro/js/form_scripts.js" defer></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         if (typeof FormIntegration !== 'undefined') {
