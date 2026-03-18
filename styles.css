@@ -855,6 +855,17 @@ a:focus-visible {
     text-align: center;
     position: relative;
     overflow: hidden;
+    background-image: url('images/family-bg.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.pull-quote::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(26, 26, 26, 0.75);
+    pointer-events: none;
+    z-index: 1;
 }
 .pull-quote::before {
     content: '\201C';
@@ -866,13 +877,6 @@ a:focus-visible {
     left: 50%;
     transform: translateX(-50%);
     line-height: 1;
-    pointer-events: none;
-}
-.pull-quote::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at center, rgba(201, 168, 76, 0.06) 0%, transparent 60%);
     pointer-events: none;
 }
 .pull-quote blockquote {
