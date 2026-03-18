@@ -46,66 +46,43 @@
     <div class="hero-grid" aria-hidden="true"></div>
     <div class="hero-corner hero-corner--tl" aria-hidden="true"></div>
     <div class="hero-corner hero-corner--br" aria-hidden="true"></div>
-    <div class="hero-content">
-        <div class="hero-badge"><span class="pulse-dot" aria-hidden="true"></span> 28 марта 2026 — Онлайн</div>
+    <div class="hero-layout">
+        <div class="hero-photo-col">
+            <img src="images/tolstyakov.jpg" alt="Дмитрий Толстяков" class="hero-speaker-photo" loading="eager">
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge"><span class="pulse-dot" aria-hidden="true"></span> 28 марта 2026 — Онлайн</div>
 
-        <h1 class="hero-title">
-            День доходной<br><span>недвижимости</span>
-        </h1>
+            <h1 class="hero-title">
+                День доходной<br><span>недвижимости</span>
+            </h1>
 
-        <p class="hero-subtitle">
-            6-часовая онлайн-конференция по реальным стратегиям инвестирования в недвижимость.
-            Кейсы инвесторов, практические модели заработка и доходность от 20 до 100% годовых.
-        </p>
+            <p class="hero-subtitle">
+                6-часовая онлайн-конференция по реальным стратегиям инвестирования в недвижимость.
+                Кейсы инвесторов, практические модели заработка и доходность от 20 до 100% годовых.
+            </p>
 
-        <div class="hero-meta">
-            <div class="hero-meta-item">
-                <div class="hero-meta-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <div class="hero-cta-group">
+                <button class="btn-primary" onclick="openModal()">Зарегистрироваться бесплатно &rarr;</button>
+                <a href="#program" class="btn-secondary">Программа конференции</a>
+            </div>
+
+            <div class="hero-stats-row">
+                <div class="hero-stat-inline">
+                    <span class="hero-stat-num">20-100%</span>
+                    <span class="hero-stat-txt">доходность годовых</span>
                 </div>
-                <div>
-                    <span class="hero-meta-label">Дата</span>
-                    <span class="hero-meta-value">28 марта</span>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat-inline">
+                    <span class="hero-stat-num">5</span>
+                    <span class="hero-stat-txt">практикующих инвесторов</span>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat-inline">
+                    <span class="hero-stat-num">6 ч</span>
+                    <span class="hero-stat-txt">практики и кейсов</span>
                 </div>
             </div>
-            <div class="hero-meta-item">
-                <div class="hero-meta-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                </div>
-                <div>
-                    <span class="hero-meta-label">Время</span>
-                    <span class="hero-meta-value">9:30 - 16:00 МСК</span>
-                </div>
-            </div>
-            <div class="hero-meta-item">
-                <div class="hero-meta-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                </div>
-                <div>
-                    <span class="hero-meta-label">Спикеры</span>
-                    <span class="hero-meta-value">5 экспертов</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="hero-cta-group">
-            <button class="btn-primary" onclick="openModal()">Зарегистрироваться бесплатно &rarr;</button>
-            <a href="#program" class="btn-secondary">Программа конференции</a>
-        </div>
-    </div>
-
-    <div class="hero-deco" aria-hidden="true">
-        <div class="hero-stat">
-            <div class="hero-stat-number">20-100%</div>
-            <div class="hero-stat-label">Доходность годовых</div>
-        </div>
-        <div class="hero-stat">
-            <div class="hero-stat-number">5</div>
-            <div class="hero-stat-label">Практикующих инвесторов</div>
-        </div>
-        <div class="hero-stat">
-            <div class="hero-stat-number">6 ч</div>
-            <div class="hero-stat-label">Практики и кейсов</div>
         </div>
     </div>
 </section>
@@ -483,7 +460,6 @@
                 <div class="pricing-price">0 &#8381;</div>
                 <ul class="pricing-features">
                     <li><span class="check-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Онлайн-участие в конференции 28 марта</li>
-                    <li><span class="check-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Доступ к прямой трансляции всех выступлений</li>
                     <li><span class="check-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Знакомство со спикерами и стратегиями</li>
                     <li class="disabled"><span class="check-icon" aria-hidden="true">—</span>Запись мероприятия</li>
                 </ul>
