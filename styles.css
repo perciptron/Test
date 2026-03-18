@@ -27,7 +27,7 @@
 html { scroll-behavior: smooth; }
 
 body {
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: 'Inter', sans-serif;
     color: var(--text-primary);
     background: var(--ivory-warm);
     overflow-x: hidden;
@@ -182,7 +182,7 @@ a:focus-visible {
     border-radius: 100px;
     border: none;
     cursor: pointer;
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: 'Inter', sans-serif;
     transition: all 0.3s;
 }
 .nav-cta:hover {
@@ -358,7 +358,7 @@ a:focus-visible {
     gap: 4px;
 }
 .hero-stat-num {
-    font-family: 'DM Mono', 'Source Sans 3', sans-serif;
+    font-family: 'DM Mono', 'Inter', sans-serif;
     font-size: 28px;
     font-weight: 500;
     color: var(--gold);
@@ -405,12 +405,14 @@ a:focus-visible {
 
 .hero-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(42px, 6vw, 80px);
+    font-size: clamp(48px, 7vw, 90px);
     font-weight: 700;
     line-height: 1.05;
     color: var(--ivory);
     margin-bottom: 24px;
     max-width: 800px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
 }
 .hero-title span {
     color: var(--gold);
@@ -492,7 +494,7 @@ a:focus-visible {
     background: linear-gradient(135deg, var(--gold), var(--gold-light), var(--gold));
     background-size: 200% auto;
     color: var(--charcoal);
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 15px;
     font-weight: 700;
     text-decoration: none;
@@ -514,7 +516,7 @@ a:focus-visible {
     padding: 16px 36px;
     background: transparent;
     color: var(--ivory);
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 15px;
     font-weight: 600;
     text-decoration: none;
@@ -547,11 +549,13 @@ a:focus-visible {
 }
 .section-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(32px, 4.5vw, 56px);
+    font-size: clamp(36px, 5vw, 64px);
     font-weight: 700;
-    line-height: 1.15;
+    line-height: 1.1;
     margin-bottom: 20px;
     color: var(--charcoal);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
 }
 .section-desc {
     font-size: 19px;
@@ -707,7 +711,7 @@ a:focus-visible {
 }
 .about-highlight-item { padding: 16px 0; }
 .about-highlight-number {
-    font-family: 'DM Mono', 'Source Sans 3', sans-serif;
+    font-family: 'DM Mono', 'Inter', sans-serif;
     font-size: 28px;
     font-weight: 500;
     color: var(--gold);
@@ -746,12 +750,13 @@ a:focus-visible {
 }
 .speaker-card.featured .speaker-photo,
 .speaker-card.featured .speaker-photo-placeholder {
+    aspect-ratio: 3 / 4;
     height: 100%;
     min-height: 400px;
 }
 .speaker-photo {
     width: 100%;
-    height: 320px;
+    aspect-ratio: 3 / 4;
     object-fit: cover;
     object-position: center top;
     display: block;
@@ -762,7 +767,7 @@ a:focus-visible {
 }
 .speaker-photo-placeholder {
     width: 100%;
-    height: 320px;
+    aspect-ratio: 3 / 4;
     background: linear-gradient(135deg, var(--charcoal-light), var(--slate));
     display: flex;
     align-items: center;
@@ -883,7 +888,7 @@ a:focus-visible {
 }
 .pull-quote cite {
     font-style: normal;
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 14px;
     color: var(--gold);
     letter-spacing: 1px;
@@ -912,7 +917,7 @@ a:focus-visible {
     position: relative;
 }
 .timeline-time-text {
-    font-family: 'DM Mono', 'Source Sans 3', sans-serif;
+    font-family: 'DM Mono', 'Inter', sans-serif;
     font-size: 14px;
     font-weight: 500;
     color: var(--gold-dark);
@@ -1079,7 +1084,7 @@ a:focus-visible {
     margin-bottom: 8px;
 }
 .pricing-price {
-    font-family: 'DM Mono', 'Source Sans 3', sans-serif;
+    font-family: 'DM Mono', 'Inter', sans-serif;
     font-size: 40px;
     font-weight: 500;
     color: var(--gold);
@@ -1089,7 +1094,7 @@ a:focus-visible {
     font-size: 16px;
     font-weight: 400;
     color: var(--text-muted);
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: 'Inter', sans-serif;
 }
 .pricing-features {
     list-style: none;
@@ -1130,7 +1135,7 @@ a:focus-visible {
     background: none;
     border: none;
     padding: 24px 0;
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 18px;
     font-weight: 600;
     color: var(--charcoal);
@@ -1394,7 +1399,7 @@ footer {
     border-radius: 10px !important;
     padding: 0.75rem 1rem !important;
     font-size: 0.95rem !important;
-    font-family: 'Source Sans 3', sans-serif !important;
+    font-family: 'Inter', sans-serif !important;
     outline: none !important;
     box-sizing: border-box !important;
     transition: all 0.2s ease !important;
@@ -1426,7 +1431,7 @@ footer {
     color: #fff !important;
     font-size: 1rem !important;
     font-weight: 700 !important;
-    font-family: 'Source Sans 3', sans-serif !important;
+    font-family: 'Inter', sans-serif !important;
     border: none !important;
     border-radius: 14px !important;
     cursor: pointer !important;
@@ -1523,7 +1528,7 @@ footer {
     .speakers-grid { grid-template-columns: 1fr; }
     .speaker-card.featured { grid-template-columns: 1fr; }
     .speaker-card.featured .speaker-photo,
-    .speaker-card.featured .speaker-photo-placeholder { height: 320px; min-height: auto; }
+    .speaker-card.featured .speaker-photo-placeholder { min-height: auto; }
     .for-whom-grid { grid-template-columns: 1fr; }
     .pricing-grid { grid-template-columns: 1fr; }
     .pricing-card.featured { transform: none; }
