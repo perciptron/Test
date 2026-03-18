@@ -815,7 +815,7 @@ a:focus-visible {
     font-size: 15px;
     color: var(--gold-dark);
     font-weight: 600;
-    margin-bottom: 16px;
+    margin-bottom: 28px;
     letter-spacing: 0.3px;
 }
 .speaker-topic {
