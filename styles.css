@@ -656,7 +656,7 @@ a:focus-visible {
     pointer-events: none;
 }
 .about-host .section-label { color: var(--gold); }
-.about-host .section-title { color: var(--ivory); }
+.about-host .section-title { color: var(--ivory); margin-bottom: 48px; }
 
 .about-host-layout {
     display: grid;
