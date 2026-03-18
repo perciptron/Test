@@ -579,12 +579,17 @@
 </main>
 
 <!-- ===== MODAL POPUP ===== -->
-<div id="modalOverlay" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Форма регистрации" onclick="closeModalOutside(event)">
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
     <div class="modal">
-        <button class="modal__close" onclick="closeModal()" aria-label="Закрыть">&times;</button>
-        <div class="modal-title">Регистрация</div>
-        <div class="modal-subtitle">Заполните форму и мы пришлём ссылку в Telegram</div>
-        <div class="form_integration_block"></div>
+        <button class="modal__close" onclick="closeModal()">&times;</button>
+        <script src='https://salebot.pro/js/form_scripts.js'></script>
+        <div class='form_integration_block'></div>
+        <script>
+            FormIntegration.init({
+                project_id: 317313,
+                guid: '6051c9c836bcd6656cc16952872165be'
+            })
+        </script>
     </div>
 </div>
 
@@ -594,20 +599,5 @@
 </footer>
 
 <script src="script.js"></script>
-<script src="https://salebot.pro/js/form_scripts.js" defer></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        if (typeof FormIntegration !== 'undefined') {
-            FormIntegration.init({ project_id: 317313, guid: '6051c9c836bcd6656cc16952872165be' });
-        } else {
-            var check = setInterval(function() {
-                if (typeof FormIntegration !== 'undefined') {
-                    FormIntegration.init({ project_id: 317313, guid: '6051c9c836bcd6656cc16952872165be' });
-                    clearInterval(check);
-                }
-            }, 200);
-        }
-    });
-</script>
 </body>
 </html>

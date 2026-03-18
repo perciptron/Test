@@ -125,31 +125,21 @@ document.querySelectorAll('.hero-stat-number, .about-highlight-number').forEach(
 });
 
 // ===== MODAL POPUP (per TZ) =====
-const modalOverlay = document.getElementById('modalOverlay');
-
-window.openModal = function() {
-    modalOverlay.classList.add('active');
+function openModal() {
+    document.getElementById('modalOverlay').classList.add('active');
     document.body.style.overflow = 'hidden';
-    // Focus trap
-    const modal = modalOverlay.querySelector('.modal');
-    const focusable = modal.querySelectorAll('input, button, a, select, textarea');
-    if (focusable.length) focusable[0].focus();
-};
+}
 
-window.closeModal = function() {
-    modalOverlay.classList.remove('active');
+function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('active');
     document.body.style.overflow = '';
-};
+}
 
-window.closeModalOutside = function(e) {
+function closeModalOutside(e) {
     if (e.target === e.currentTarget) closeModal();
-};
+}
 
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
-        closeModal();
-    }
-});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
 // ===== IMAGE FALLBACK =====
 document.querySelectorAll('.speaker-photo').forEach(img => {
