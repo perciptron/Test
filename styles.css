@@ -1127,7 +1127,7 @@ a:focus-visible {
 }
 .pricing-features li.disabled .check-icon { color: rgba(245, 240, 232, 0.3); }
 .pricing-card .btn-primary,
-.pricing-card .btn-secondary { width: 100%; justify-content: center; }
+.pricing-card .btn-secondary { width: 100%; justify-content: center; white-space: nowrap; }
 
 /* ===== FAQ ===== */
 .faq { background: var(--ivory-warm); }
