@@ -1097,6 +1097,7 @@ a:focus-visible {
 .pricing {
     background: var(--charcoal);
     color: var(--ivory);
+    overflow: hidden;
 }
 .pricing .section-inner { text-align: center; }
 .pricing .section-desc { margin-left: auto; margin-right: auto; }
@@ -1602,7 +1603,7 @@ footer {
     .pull-quote--compact blockquote { font-size: 18px !important; }
     .hero-stats-row { flex-wrap: wrap; gap: 16px; }
     .hero-stat-divider { display: none; }
-    .section { padding: 64px 20px; }
+    .section { padding: 64px 20px; overflow: hidden; }
     .hero-meta { gap: 20px; }
     .benefits-grid { grid-template-columns: 1fr; }
     .about-host-layout { grid-template-columns: 1fr; }
@@ -1610,8 +1611,11 @@ footer {
     .speaker-card-h { min-width: 280px; }
     .inline-cta { padding: 24px 20px; }
     .for-whom-grid { grid-template-columns: 1fr; }
-    .pricing-grid { grid-template-columns: 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; max-width: 100%; }
     .pricing-card.featured { transform: none; }
+    .btn-primary, .btn-secondary { white-space: normal; font-size: 14px; padding: 14px 24px; }
+    .pricing-card .btn-primary,
+    .pricing-card .btn-secondary { white-space: nowrap; }
     .timeline-item { flex-wrap: wrap; gap: 8px 16px; }
     .timeline-line { display: none; }
     .timeline-time { width: auto; }
