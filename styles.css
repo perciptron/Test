@@ -1483,6 +1483,7 @@ footer {
     .hero-subtitle { font-size: 15px; }
     .section-title { font-size: clamp(22px, 6vw, 32px); }
     .section-label { font-size: 12px; }
+    .section-desc { font-size: 15px; }
     .speakers-carousel { margin: 0 -20px; padding: 0 20px 16px; }
     .pull-quote--compact { padding: 36px 20px; }
     .pull-quote--compact blockquote { font-size: 18px !important; }
