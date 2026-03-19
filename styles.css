@@ -1471,6 +1471,14 @@ footer {
     .section-label { font-size: 12px; }
     .section-desc { font-size: 15px; }
     .speakers-pyramid { grid-template-columns: 1fr; }
+    .speaker-card-h { align-items: stretch; }
+    .speaker-photo-h,
+    .speaker-photo-placeholder-h {
+        width: 100px;
+        height: auto;
+        align-self: stretch;
+        min-height: 100px;
+    }
     .pull-quote--compact { padding: 36px 20px; }
     .pull-quote--compact blockquote { font-size: 18px !important; }
     .hero-stats-row { flex-wrap: wrap; gap: 16px; }
