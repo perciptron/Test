@@ -139,8 +139,23 @@ function closeModalOutside(e) {
     if (e.target === e.currentTarget) closeModal();
 }
 
+// ===== PAID MODAL =====
+function openPaidModal() {
+    document.getElementById('paidModalOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closePaidModal() {
+    document.getElementById('paidModalOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+function closePaidModalOutside(e) {
+    if (e.target === e.currentTarget) closePaidModal();
+}
+
 document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeModal();
+    if (e.key === 'Escape') { closeModal(); closePaidModal(); }
     // Focus trap for modal
     if (e.key === 'Tab' && document.getElementById('modalOverlay').classList.contains('active')) {
         const modal = document.querySelector('.modal');

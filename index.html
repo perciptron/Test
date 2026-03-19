@@ -475,7 +475,7 @@
                     <li><span class="check-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Пересматривайте материалы в удобное время</li>
                     <li><span class="check-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Доступ ко всем разборам кейсов и стратегиям</li>
                 </ul>
-                <a href="#" class="btn-primary">Получить запись конференции</a>
+                <button class="btn-primary" onclick="openPaidModal()">Получить запись конференции</button>
             </div>
         </div>
     </div>
@@ -564,7 +564,21 @@
         <script>
             FormIntegration.init({
                 project_id: 317313,
-                guid: '6051c9c836bcd6656cc16952872165be'
+                guid: '59e10fa4b0bda27f832d3cec19ef65b8'
+            })
+        </script>
+    </div>
+</div>
+
+<!-- Paid modal -->
+<div class="modal-overlay" id="paidModalOverlay" onclick="closePaidModalOutside(event)">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Форма оплаты">
+        <button class="modal__close" onclick="closePaidModal()" aria-label="Закрыть">&times;</button>
+        <div class='form_integration_block' id="paid-form-block"></div>
+        <script>
+            FormIntegration.init({
+                project_id: 317313,
+                guid: '4965f149cf3f331b35119e0787e32842'
             })
         </script>
     </div>
