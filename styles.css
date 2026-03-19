@@ -1021,7 +1021,8 @@ body {
     content: 'Рекомендуем';
     position: absolute;
     top: -1px;
-    right: 24px;
+    left: 50%;
+    transform: translateX(-50%);
     background: var(--gold);
     color: var(--charcoal);
     font-size: 11px;
