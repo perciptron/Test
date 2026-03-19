@@ -1175,6 +1175,21 @@ body {
     padding: 18px 48px;
 }
 
+/* ===== DISCLAIMER ===== */
+.disclaimer {
+    background: var(--cream);
+    padding: 24px 40px;
+    border-top: 1px solid rgba(0,0,0,0.06);
+}
+.disclaimer p {
+    font-size: 11px;
+    line-height: 1.6;
+    color: #999;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
 /* ===== FOOTER ===== */
 footer {
     background: var(--ivory-warm);
