@@ -1147,8 +1147,8 @@ body {
 /* ===== INLINE CTA ===== */
 .inline-cta {
     text-align: center;
-    padding: 32px 40px;
-    background: var(--ivory);
+    padding: 0 40px 48px;
+    background: var(--ivory-warm);
 }
 
 /* ===== FOOTER CTA ===== */
