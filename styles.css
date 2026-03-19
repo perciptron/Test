@@ -644,30 +644,14 @@ body {
 /* ===== SPEAKERS ===== */
 .speakers { background: var(--ivory); }
 
-/* Carousel */
-.speakers-carousel {
-    overflow-x: auto;
-    position: relative;
-    scrollbar-width: none;
-    margin: 0 -40px;
-    padding: 0 40px 16px;
-}
-.speakers-carousel::-webkit-scrollbar { display: none; }
-.speakers-carousel::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 60px;
-    height: 100%;
-    background: linear-gradient(to left, var(--ivory), transparent);
-    pointer-events: none;
-    z-index: 2;
-}
-.speakers { position: relative; }
-.speakers-track {
-    display: flex;
+/* Speakers pyramid grid */
+.speakers-pyramid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 20px;
+}
+.speaker-card-wide {
+    grid-column: 1 / -1;
 }
 .speaker-card-h {
     display: flex;
@@ -677,8 +661,6 @@ body {
     border: 1px solid rgba(0,0,0,0.05);
     border-radius: var(--radius-lg);
     padding: 28px;
-    min-width: calc(50% - 10px);
-    flex-shrink: 0;
     transition: all 0.3s ease;
 }
 .speaker-card-h:hover {
@@ -1472,7 +1454,7 @@ footer {
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
     .about-host-layout { grid-template-columns: 280px 1fr; gap: 40px; }
-    .speakers-carousel { margin: 0 -20px; padding: 0 20px 16px; }
+    .speakers-pyramid { grid-template-columns: 1fr; }
     .faq-layout { grid-template-columns: 1fr; gap: 32px; }
 }
 
@@ -1488,7 +1470,7 @@ footer {
     .section-title { font-size: clamp(22px, 6vw, 32px); }
     .section-label { font-size: 12px; }
     .section-desc { font-size: 15px; }
-    .speakers-carousel { margin: 0 -20px; padding: 0 20px 16px; }
+    .speakers-pyramid { grid-template-columns: 1fr; }
     .pull-quote--compact { padding: 36px 20px; }
     .pull-quote--compact blockquote { font-size: 18px !important; }
     .hero-stats-row { flex-wrap: wrap; gap: 16px; }
@@ -1498,7 +1480,6 @@ footer {
     .benefits-grid { grid-template-columns: 1fr; }
     .about-host-layout { grid-template-columns: 1fr; }
     .about-host-photo-wrap { max-width: 280px; }
-    .speaker-card-h { min-width: 280px; }
     .inline-cta { padding: 24px 20px; }
     .for-whom-grid { grid-template-columns: 1fr; }
     .pricing-grid { grid-template-columns: 1fr; max-width: 100%; }

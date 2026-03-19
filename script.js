@@ -85,7 +85,7 @@ function applyStagger(containerSelector, childSelector, baseDelay) {
 }
 
 applyStagger('.benefits-grid', '.benefit-card', 0);
-applyStagger('.speakers-track', '.speaker-card-h', 0);
+applyStagger('.speakers-pyramid', '.speaker-card-h', 0);
 applyStagger('.for-whom-grid', '.for-whom-card', 0);
 applyStagger('.faq-list', '.faq-item', 0);
 
