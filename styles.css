@@ -935,7 +935,7 @@ body {
 }
 
 /* ===== FOR WHOM ===== */
-.for-whom { background: var(--ivory); }
+.for-whom { background: var(--ivory-warm); }
 .for-whom-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -945,7 +945,7 @@ body {
     display: flex;
     gap: 16px;
     padding: 24px;
-    background: var(--ivory-warm);
+    background: #fff;
     border-radius: var(--radius-md);
     border: 1px solid rgba(0,0,0,0.04);
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
