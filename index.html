@@ -2,7 +2,15 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://conf.fin-ra.pro/">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://conf.fin-ra.pro/">
+    <meta property="og:title" content="День доходной недвижимости — Онлайн-конференция 28 марта 2026">
+    <meta property="og:description" content="Онлайн-конференция по инвестициям в недвижимость. 5 экспертов, 6 часов практики. Бесплатная регистрация.">
+    <meta property="og:image" content="https://conf.fin-ra.pro/images/hero-speaker.jpg">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="description" content="Онлайн-конференция по инвестициям в недвижимость. 5 экспертов, 6 часов практики. 28 марта 2026. Бесплатная регистрация.">
     <title>День доходной недвижимости — Онлайн-конференция 28 марта 2026</title>
     <link rel="icon" href="https://fin-ra.ru/favicon.ico" type="image/x-icon">
@@ -10,6 +18,24 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        "name": "День доходной недвижимости",
+        "startDate": "2026-03-28T09:30:00+03:00",
+        "endDate": "2026-03-28T16:00:00+03:00",
+        "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "location": {"@type": "VirtualLocation", "url": "https://conf.fin-ra.pro"},
+        "organizer": {"@type": "Organization", "name": "FIN-RA", "url": "https://fin-ra.ru"},
+        "description": "Онлайн-конференция по инвестициям в недвижимость. 5 экспертов, 6 часов практики.",
+        "offers": [
+            {"@type": "Offer", "price": "0", "priceCurrency": "RUB", "availability": "https://schema.org/InStock", "name": "Бесплатное участие"},
+            {"@type": "Offer", "price": "500", "priceCurrency": "RUB", "availability": "https://schema.org/InStock", "name": "Доступ к записям"}
+        ]
+    }
+    </script>
 </head>
 <body>
 <div class="noise-overlay" aria-hidden="true"></div>
@@ -48,7 +74,7 @@
     <div class="hero-corner hero-corner--br" aria-hidden="true"></div>
     <div class="hero-layout">
         <div class="hero-photo-col">
-            <img src="images/hero-speaker.jpg" alt="Дмитрий Толстяков" class="hero-speaker-photo" loading="eager">
+            <img src="images/hero-speaker.jpg" alt="Дмитрий Толстяков" class="hero-speaker-photo" loading="eager" width="340" height="453">
         </div>
         <div class="hero-content">
             <div class="hero-badge"><span class="pulse-dot" aria-hidden="true"></span> 28 марта 2026 — Онлайн</div>
@@ -529,8 +555,8 @@
 
 <!-- ===== MODAL POPUP ===== -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
-    <div class="modal">
-        <button class="modal__close" onclick="closeModal()">&times;</button>
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Форма регистрации">
+        <button class="modal__close" onclick="closeModal()" aria-label="Закрыть">&times;</button>
         <script src='https://salebot.pro/js/form_scripts.js'></script>
         <div class='form_integration_block'></div>
         <script>
@@ -565,7 +591,7 @@
         </div>
     </div>
     <div class="footer-bottom">
-        <p>&copy; 2016-2025 Все права защищены. Копирование материалов сайта без разрешения администрации запрещено.</p>
+        <p>&copy; 2016-2026 Все права защищены. Копирование материалов сайта без разрешения администрации запрещено.</p>
     </div>
 </footer>
 

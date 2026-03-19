@@ -85,7 +85,7 @@ function applyStagger(containerSelector, childSelector, baseDelay) {
 }
 
 applyStagger('.benefits-grid', '.benefit-card', 0);
-applyStagger('.speakers-grid', '.speaker-card', 0);
+applyStagger('.speakers-track', '.speaker-card-h', 0);
 applyStagger('.for-whom-grid', '.for-whom-card', 0);
 applyStagger('.faq-list', '.faq-item', 0);
 
@@ -120,7 +120,7 @@ const counterObserver = new IntersectionObserver((entries) => {
     });
 }, { threshold: 0.5 });
 
-document.querySelectorAll('.hero-stat-number, .about-highlight-number').forEach(el => {
+document.querySelectorAll('.hero-stat-num, .about-highlight-number').forEach(el => {
     if (/\d/.test(el.textContent)) counterObserver.observe(el);
 });
 
@@ -139,10 +139,22 @@ function closeModalOutside(e) {
     if (e.target === e.currentTarget) closeModal();
 }
 
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal();
+    // Focus trap for modal
+    if (e.key === 'Tab' && document.getElementById('modalOverlay').classList.contains('active')) {
+        const modal = document.querySelector('.modal');
+        const focusable = modal.querySelectorAll('input, button, select, textarea, a[href]');
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+});
 
 // ===== IMAGE FALLBACK =====
-document.querySelectorAll('.speaker-photo').forEach(img => {
+document.querySelectorAll('.speaker-photo-h').forEach(img => {
     img.addEventListener('error', function() {
         this.style.display = 'none';
         const placeholder = this.nextElementSibling;
