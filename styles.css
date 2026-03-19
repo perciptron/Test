@@ -758,7 +758,7 @@ body {
     text-align: center;
     position: relative;
     overflow: hidden;
-    background: linear-gradient(135deg, var(--charcoal) 0%, #2a2520 50%, var(--charcoal) 100%);
+    background: linear-gradient(135deg, var(--charcoal), var(--slate));
 }
 .pull-quote--compact {
     padding: 48px 40px;
@@ -769,24 +769,11 @@ body {
     font-style: normal !important;
     margin-bottom: 8px !important;
 }
-.pull-quote::after {
+.pull-quote::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(26, 26, 26, 0.75);
-    pointer-events: none;
-    z-index: 1;
-}
-.pull-quote::before {
-    content: '\201C';
-    font-family: 'Montserrat', sans-serif;
-    font-size: 300px;
-    color: rgba(201, 168, 76, 0.04);
-    position: absolute;
-    top: -60px;
-    left: 50%;
-    transform: translateX(-50%);
-    line-height: 1;
+    background: radial-gradient(ellipse at center, rgba(201, 168, 76, 0.08) 0%, transparent 60%);
     pointer-events: none;
 }
 .pull-quote blockquote {
