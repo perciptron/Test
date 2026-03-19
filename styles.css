@@ -474,6 +474,8 @@ body {
     color: var(--charcoal);
     text-transform: uppercase;
     letter-spacing: 0.03em;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 .section-desc {
     font-size: 19px;
@@ -652,6 +654,10 @@ body {
 }
 .speaker-card-wide {
     grid-column: 1 / -1;
+}
+.speaker-card-wide .speaker-photo-h {
+    width: 160px;
+    height: 160px;
 }
 .speaker-card-h {
     display: flex;
@@ -967,7 +973,6 @@ body {
 .pricing {
     background: var(--charcoal);
     color: var(--ivory);
-    overflow: hidden;
 }
 .pricing .section-inner { text-align: center; }
 .pricing .section-desc { margin-left: auto; margin-right: auto; }
@@ -1057,7 +1062,7 @@ body {
 }
 .pricing-features li.disabled .check-icon { color: rgba(245, 240, 232, 0.3); }
 .pricing-card .btn-primary,
-.pricing-card .btn-secondary { width: 100%; justify-content: center; white-space: nowrap; }
+.pricing-card .btn-secondary { width: 100%; justify-content: center; white-space: nowrap; margin-top: auto; }
 
 /* ===== FAQ ===== */
 .faq { background: var(--ivory-warm); }
@@ -1463,7 +1468,8 @@ footer {
     .nav-burger { display: flex; }
     .hero-corner { display: none; }
     .hero-layout { grid-template-columns: 1fr; gap: 24px; padding: 100px 20px 48px; align-items: start; }
-    .hero-photo-col { max-width: 200px; order: -1; }
+    .hero-photo-col { max-width: 180px; order: -1; }
+    .hero-speaker-photo { height: auto !important; aspect-ratio: 3/4; }
     .hero-speaker-photo { height: auto !important; aspect-ratio: 3/4; }
     .hero-title { font-size: clamp(28px, 8vw, 42px); }
     .hero-subtitle { font-size: 15px; }
@@ -1471,35 +1477,45 @@ footer {
     .section-label { font-size: 12px; }
     .section-desc { font-size: 15px; }
     .speakers-pyramid { grid-template-columns: 1fr; }
-    .speaker-card-h { align-items: stretch; }
-    .speaker-photo-h,
-    .speaker-photo-placeholder-h {
-        width: 100px;
-        height: auto;
-        align-self: stretch;
-        min-height: 100px;
+    .speaker-card-h {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
+    .speaker-photo-h,
+    .speaker-photo-placeholder-h,
+    .speaker-card-wide .speaker-photo-h {
+        width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 1/1;
+        border-radius: var(--radius-md);
+    }
+    .speaker-bio-h { text-align: left; }
     .pull-quote--compact { padding: 36px 20px; }
     .pull-quote--compact blockquote { font-size: 18px !important; }
     .hero-stats-row { flex-wrap: wrap; gap: 16px; }
     .hero-stat-divider { display: none; }
-    .section { padding: 64px 20px; overflow: hidden; }
+    .section { padding: 48px 20px; overflow: hidden; }
     .hero-meta { gap: 20px; }
     .benefits-grid { grid-template-columns: 1fr; }
+    .benefit-title { font-size: 18px; }
     .about-host-layout { grid-template-columns: 1fr; }
     .about-host-photo-wrap { max-width: 280px; }
-    .inline-cta { padding: 24px 20px; }
+    .inline-cta { padding: 16px 20px; }
     .for-whom-grid { grid-template-columns: 1fr; }
+    .for-whom-text { font-size: 15px; }
+    .faq-question { font-size: 16px; }
     .pricing-grid { grid-template-columns: 1fr; max-width: 100%; }
     .pricing-card.featured { transform: none; }
-    .btn-primary, .btn-secondary { white-space: normal; font-size: 14px; padding: 14px 24px; }
+    .btn-primary, .btn-secondary { white-space: nowrap; font-size: 14px; padding: 14px 24px; }
     .pricing-card .btn-primary,
     .pricing-card .btn-secondary { white-space: nowrap; }
     .timeline-item { flex-wrap: wrap; gap: 8px 16px; }
     .timeline-line { display: none; }
     .timeline-time { width: auto; }
     .timeline-content { padding: 20px; }
-    .footer-cta { padding: 60px 20px; }
+    .footer-cta { padding: 48px 20px; }
+    .footer-cta .btn-primary { white-space: nowrap; font-size: 14px; padding: 16px 28px; }
     .pull-quote { padding: 60px 20px; }
     .nav { padding: 12px 20px; }
     footer { padding: 40px 20px 0; }
@@ -1532,7 +1548,7 @@ footer {
     .hero-cta-group { flex-direction: column; }
     .hero-cta-group .btn-primary,
     .hero-cta-group .btn-secondary { width: 100%; justify-content: center; }
-    .for-whom-card { flex-direction: column; }
+    .for-whom-card { flex-direction: row; }
     .about-host-highlight { grid-template-columns: 1fr 1fr; }
 }
 
