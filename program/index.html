@@ -324,10 +324,10 @@
         }
         .modal-overlay.active { opacity: 1; visibility: visible; }
         .modal {
-            background: #1E1710; border-radius: 24px;
+            background: #ffffff; border-radius: 24px;
             padding: 2.5rem;
             max-width: 460px; width: 100%; position: relative;
-            border: 1px solid rgba(201,168,76,0.15);
+            border: none;
             transform: translateY(20px) scale(0.97);
             transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
             box-shadow: 0 32px 80px rgba(0,0,0,0.5);
@@ -337,17 +337,17 @@
             position: absolute; top: 1rem; right: 1rem;
             width: 34px; height: 34px;
             display: flex; align-items: center; justify-content: center;
-            background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 50%; color: var(--muted); cursor: pointer;
+            background: rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 50%; color: #666; cursor: pointer;
             font-size: 1.1rem; transition: all 0.2s;
         }
-        .modal__close:hover { background: rgba(255,255,255,0.12); color: var(--white); }
+        .modal__close:hover { background: rgba(0,0,0,0.12); color: #111; }
         .modal__title {
             font-family: 'Montserrat', sans-serif;
             font-size: 20px; font-weight: 800;
-            color: var(--white); margin-bottom: 4px;
+            color: #111; margin-bottom: 4px;
         }
-        .modal__sub { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+        .modal__sub { font-size: 13px; color: #888; margin-bottom: 24px; }
 
         /* Salebot form overrides */
         .modal .form_integration_block { width: 100%; }
@@ -357,9 +357,9 @@
         .modal .form_integration_block input[type="number"],
         .modal .form_integration_block textarea,
         .modal .form_integration_block select {
-            width: 100% !important; background: rgba(255,255,255,0.06) !important;
-            border: 1.5px solid rgba(255,255,255,0.1) !important; border-radius: 12px !important;
-            padding: 0.75rem 1rem !important; color: var(--white) !important;
+            width: 100% !important; background: #f5f5f5 !important;
+            border: 1.5px solid #e0e0e0 !important; border-radius: 12px !important;
+            padding: 0.75rem 1rem !important; color: #111 !important;
             font-family: 'Inter', sans-serif !important; font-size: 0.95rem !important;
             outline: none !important; transition: all 0.2s !important;
         }
@@ -367,13 +367,13 @@
         .modal .form_integration_block textarea:focus,
         .modal .form_integration_block select:focus {
             border-color: var(--gold) !important;
-            background: rgba(201,168,76,0.06) !important;
+            background: #fff !important;
             box-shadow: 0 0 0 3px rgba(201,168,76,0.15) !important;
         }
         .modal .form_integration_block input::placeholder,
-        .modal .form_integration_block textarea::placeholder { color: rgba(245,239,227,0.25) !important; }
+        .modal .form_integration_block textarea::placeholder { color: #aaa !important; }
         .modal .form_integration_block label {
-            color: rgba(245,239,227,0.7) !important;
+            color: #444 !important;
             font-family: 'Inter', sans-serif !important;
             font-size: 0.8rem !important; font-weight: 600 !important;
             margin-bottom: 0.35rem !important; display: block !important;
@@ -414,7 +414,7 @@
         .modal .form_integration_block input[type="checkbox"] {
             -webkit-appearance: none !important; appearance: none !important;
             width: 44px !important; height: 24px !important; min-width: 44px !important;
-            background: rgba(255,255,255,0.1) !important; background-image: none !important;
+            background: #ddd !important; background-image: none !important;
             border-radius: 12px !important; border: none !important;
             position: relative !important; cursor: pointer !important;
             transition: background 0.2s !important; padding: 0 !important; margin: 0 !important;
@@ -440,13 +440,14 @@
         .modal .form_integration_block label:has(> input[type="checkbox"]) span,
         .modal .form_integration_block label:has(> input[type="checkbox"]) a {
             flex: 1 !important; font-size: 0.75rem !important;
-            line-height: 1.3 !important; color: rgba(245,239,227,0.4) !important;
+            line-height: 1.3 !important; color: #888 !important;
         }
         @media (max-width: 768px) {
             .modal-overlay { align-items: flex-end; padding: 0; }
             .modal {
                 padding: 1.5rem; border-radius: 24px 24px 0 0;
                 max-height: 92dvh; overflow-y: auto; transform: translateY(100%);
+                background: #ffffff;
             }
             .modal-overlay.active .modal { transform: translateY(0); }
         }
