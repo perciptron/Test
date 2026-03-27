@@ -3,203 +3,396 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Программа конференции — День доходной недвижимости</title>
+    <title>Программа — День доходной недвижимости</title>
     <link rel="icon" href="https://fin-ra.ru/favicon.ico" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
+        /* ── TOKENS ── */
         :root {
-            --charcoal: #1A1A1A;
-            --gold: #C9A84C;
-            --cream: #F5F0E8;
+            --bg:        #130E09;
+            --bg-card:   #1C1510;
+            --bg-line:   #2A1F14;
+            --gold:      #C9A84C;
+            --gold-lt:   #E2C97A;
+            --gold-dk:   #9A7A2E;
+            --gold-glow: rgba(201,168,76,0.18);
+            --white:     #F5EFE3;
+            --muted:     rgba(245,239,227,0.45);
+            --muted2:    rgba(245,239,227,0.25);
+            --radius:    16px;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--cream);
-            color: var(--charcoal);
+            background: var(--bg);
+            color: var(--white);
             min-height: 100vh;
+            overflow-x: hidden;
         }
-        .header {
-            background: var(--charcoal);
-            padding: 20px 24px;
-            text-align: center;
+
+        /* ── NOISE TEXTURE ── */
+        body::before {
+            content: '';
+            position: fixed; inset: 0; z-index: 0; pointer-events: none;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size: 200px 200px;
         }
-        .header-title {
+
+        /* ── LAYOUT ── */
+        .page { position: relative; z-index: 1; max-width: 960px; margin: 0 auto; padding: 0 24px 80px; }
+
+        /* ── BACK LINK ── */
+        .back-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 20px 0 0;
+            color: var(--muted); font-size: 13px; text-decoration: none;
+            transition: color 0.2s;
+        }
+        .back-link:hover { color: var(--gold); }
+        .back-link svg { width: 16px; height: 16px; }
+
+        /* ── HERO HEADER ── */
+        .hero {
+            padding: 28px 0 40px;
+            border-bottom: 1px solid var(--bg-line);
+        }
+        .hero-eyebrow {
             font-family: 'Montserrat', sans-serif;
-            font-size: 18px;
-            font-weight: 800;
-            color: #fff;
+            font-size: 11px; font-weight: 700;
+            letter-spacing: 0.25em; text-transform: uppercase;
+            color: var(--gold); margin-bottom: 14px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .hero-eyebrow::before {
+            content: ''; display: block; width: 28px; height: 2px;
+            background: var(--gold);
+        }
+        .hero-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(28px, 5vw, 52px);
+            font-weight: 900; line-height: 1.08;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: -0.01em;
+            color: var(--white);
         }
-        .header-title span { color: var(--gold); }
-        .header-date {
-            font-size: 13px;
-            color: rgba(255,255,255,0.5);
-            margin-top: 4px;
-        }
-        .schedule {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 24px 16px 48px;
-        }
-        .now-label {
-            display: none;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+        .hero-title em {
+            font-style: normal;
             color: var(--gold);
-            margin-bottom: 8px;
+            background: linear-gradient(120deg, var(--gold-lt), var(--gold), var(--gold-dk));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
+        .hero-sub {
+            margin-top: 14px;
+            font-size: 14px; color: var(--muted);
+            display: flex; align-items: center; gap: 8px;
+        }
+        .live-dot {
+            width: 7px; height: 7px; border-radius: 50%;
+            background: #4ade80;
+            box-shadow: 0 0 0 0 rgba(74,222,128,0.4);
+            animation: livepulse 2s infinite;
+            flex-shrink: 0;
+        }
+        @keyframes livepulse {
+            0%   { box-shadow: 0 0 0 0 rgba(74,222,128,0.5); }
+            70%  { box-shadow: 0 0 0 8px rgba(74,222,128,0); }
+            100% { box-shadow: 0 0 0 0 rgba(74,222,128,0); }
+        }
+
+        /* ── MAIN GRID ── */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 96px;
+            gap: 0 40px;
+            padding-top: 40px;
+            align-items: start;
+        }
+
+        /* ── TIMELINE ── */
+        .timeline { position: relative; }
+
+        /* vertical line */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 10px; bottom: 10px;
+            left: 72px;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, var(--bg-line) 8%, var(--bg-line) 92%, transparent);
+        }
+
         .slot {
-            display: flex;
-            gap: 16px;
-            padding: 16px 0;
-            border-bottom: 1px solid rgba(0,0,0,0.06);
-            opacity: 0.5;
-            transition: opacity 0.3s;
+            display: grid;
+            grid-template-columns: 64px 1fr;
+            gap: 0 24px;
+            padding: 0 0 36px;
+            position: relative;
+            transition: opacity 0.4s;
         }
-        .slot.active {
-            opacity: 1;
-            background: #fff;
-            margin: 0 -16px;
-            padding: 16px;
-            border-radius: 12px;
-            border-bottom: none;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-        }
-        .slot.active .now-label { display: block; }
+        .slot.past { opacity: 0.38; }
+        .slot.active { opacity: 1; }
         .slot.upcoming { opacity: 1; }
-        .slot.past { opacity: 0.4; }
-        .slot-time {
-            min-width: 52px;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--gold);
-            padding-top: 2px;
-        }
-        .slot-content { flex: 1; }
-        .slot-speaker {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 4px;
-        }
-        .slot-avatar {
-            width: 28px;
-            height: 28px;
+
+        /* dot on the line */
+        .slot::after {
+            content: '';
+            position: absolute;
+            top: 7px;
+            left: 68px;
+            width: 9px; height: 9px;
             border-radius: 50%;
-            object-fit: cover;
+            background: var(--bg-line);
+            border: 2px solid var(--bg-line);
+            transition: all 0.3s;
         }
+        .slot.active::after {
+            background: var(--gold);
+            border-color: var(--gold);
+            box-shadow: 0 0 0 4px var(--gold-glow);
+        }
+        .slot.upcoming::after {
+            background: transparent;
+            border-color: var(--gold-dk);
+        }
+
+        .slot-time {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px; font-weight: 700;
+            color: var(--gold); padding-top: 4px;
+            text-align: right;
+            letter-spacing: 0.02em;
+        }
+        .slot.past .slot-time { color: var(--muted2); }
+
+        .slot-body { padding-left: 0; }
+
+        .slot-now {
+            display: none;
+            font-size: 10px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.15em;
+            color: #4ade80; margin-bottom: 5px;
+            align-items: center; gap: 5px;
+        }
+        .slot.active .slot-now { display: flex; }
+
         .slot-name {
-            font-size: 14px;
-            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px; font-weight: 800;
+            color: var(--white);
+            line-height: 1.2; margin-bottom: 5px;
         }
         .slot-role {
-            font-size: 11px;
-            color: #999;
-            margin-bottom: 6px;
+            font-size: 11px; color: var(--gold);
+            font-weight: 500; margin-bottom: 8px;
+            opacity: 0.8;
         }
         .slot-topic {
-            font-size: 14px;
-            font-weight: 500;
-            line-height: 1.4;
+            font-size: 14px; font-weight: 400;
+            color: rgba(245,239,227,0.7);
+            line-height: 1.55;
         }
-        .slot-desc {
-            font-size: 12px;
-            color: #777;
-            margin-top: 4px;
-            line-height: 1.4;
-        }
-        .back-link {
-            display: block;
-            text-align: center;
-            padding: 24px;
-            font-size: 13px;
-            color: var(--gold);
-            text-decoration: none;
-        }
-        .back-link:hover { text-decoration: underline; }
-        .upgrade-banner {
-            max-width: 600px;
-            margin: 0 auto 32px;
-            padding: 24px;
-            background: var(--charcoal);
-            border-radius: 14px;
-            text-align: center;
-        }
-        .upgrade-text {
-            color: rgba(255,255,255,0.8);
-            font-size: 15px;
-            margin-bottom: 16px;
-        }
-        .upgrade-text strong { color: var(--gold); font-size: 18px; }
-        .upgrade-btn {
-            background: linear-gradient(135deg, #D4AF37, #C9A84C, #BF953F);
-            color: var(--charcoal);
-            border: none;
-            padding: 12px 32px;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: 700;
-            cursor: pointer;
+        .slot-break .slot-name {
+            color: var(--muted);
+            font-weight: 600; font-size: 14px;
             font-family: 'Inter', sans-serif;
-            transition: transform 0.2s, box-shadow 0.2s;
         }
-        .upgrade-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 16px rgba(201,168,76,0.3);
+
+        /* active slot card glow */
+        .slot.active .slot-body {
+            background: linear-gradient(135deg, rgba(201,168,76,0.07), rgba(201,168,76,0.02));
+            border: 1px solid rgba(201,168,76,0.15);
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin-left: -16px;
         }
-        /* Modal */
+
+        /* ── SPEAKERS COLUMN ── */
+        .speakers-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            padding-top: 4px;
+            position: sticky;
+            top: 24px;
+        }
+
+        .spk-avatar {
+            width: 84px; height: 84px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid var(--bg-line);
+            transition: all 0.3s;
+            flex-shrink: 0;
+            position: relative;
+        }
+        .spk-avatar img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .spk-avatar.active-spk {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px var(--gold-glow), 0 0 20px rgba(201,168,76,0.2);
+        }
+        .spk-avatar .spk-name-tip {
+            position: absolute; bottom: -24px; left: 50%;
+            transform: translateX(-50%);
+            font-size: 9px; font-weight: 600;
+            color: var(--gold); white-space: nowrap;
+            opacity: 0; transition: opacity 0.2s;
+            pointer-events: none;
+        }
+        .spk-avatar:hover .spk-name-tip { opacity: 1; }
+        .spk-avatar:hover {
+            border-color: var(--gold-dk);
+            transform: scale(1.06);
+        }
+
+        /* ── CTA SECTION ── */
+        .cta-section {
+            margin-top: 16px;
+            padding: 40px 36px;
+            background: linear-gradient(135deg, var(--bg-card) 0%, #1F160C 100%);
+            border: 1px solid rgba(201,168,76,0.12);
+            border-radius: var(--radius);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-section::before {
+            content: '';
+            position: absolute; top: -40px; right: -40px;
+            width: 180px; height: 180px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(201,168,76,0.1), transparent 70%);
+            pointer-events: none;
+        }
+        .cta-label {
+            font-size: 12px; font-weight: 600;
+            letter-spacing: 0.15em; text-transform: uppercase;
+            color: var(--gold); margin-bottom: 10px;
+        }
+        .cta-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(18px, 3vw, 26px);
+            font-weight: 800; line-height: 1.2;
+            color: var(--white); margin-bottom: 8px;
+        }
+        .cta-sub {
+            font-size: 14px; color: var(--muted);
+            margin-bottom: 28px; max-width: 380px; margin-left: auto; margin-right: auto;
+        }
+        .cta-price {
+            display: inline-block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px; font-weight: 900;
+            color: var(--gold);
+        }
+        .cta-price-wrap {
+            margin-bottom: 24px;
+            display: flex; align-items: baseline;
+            justify-content: center; gap: 6px;
+        }
+        .cta-price-note { font-size: 13px; color: var(--muted); }
+        .cta-btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #D4AF37, #C9A84C, #B8962A);
+            color: var(--bg);
+            border: none;
+            padding: 16px 48px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+            box-shadow: 0 4px 24px rgba(201,168,76,0.25);
+        }
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(201,168,76,0.4);
+        }
+        .cta-btn:active { transform: scale(0.98); }
+
+        /* ── DIVIDER ── */
+        .divider {
+            width: 100%; height: 1px;
+            background: linear-gradient(to right, transparent, var(--bg-line) 20%, var(--bg-line) 80%, transparent);
+            margin: 48px 0;
+        }
+
+        /* ── MODAL ── */
         .modal-overlay {
             position: fixed; inset: 0; z-index: 1000;
-            background: rgba(0,0,0,0.4);
+            background: rgba(0,0,0,0.65);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
             display: flex; align-items: center; justify-content: center;
             padding: 1rem; opacity: 0; visibility: hidden;
-            transition: all 0.3s ease;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
         .modal-overlay.active { opacity: 1; visibility: visible; }
         .modal {
-            background: #fff; border-radius: 20px; padding: 2.5rem;
+            background: #1E1710; border-radius: 24px;
+            padding: 2.5rem;
             max-width: 460px; width: 100%; position: relative;
+            border: 1px solid rgba(201,168,76,0.15);
             transform: translateY(20px) scale(0.97);
-            transition: transform 0.3s ease;
-            box-shadow: 0 24px 60px rgba(0,0,0,0.12);
+            transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+            box-shadow: 0 32px 80px rgba(0,0,0,0.5);
         }
         .modal-overlay.active .modal { transform: translateY(0) scale(1); }
         .modal__close {
             position: absolute; top: 1rem; right: 1rem;
-            width: 32px; height: 32px; display: flex;
-            align-items: center; justify-content: center;
-            background: rgba(0,0,0,0.04); border: none;
-            border-radius: 50%; color: #78776e; cursor: pointer;
+            width: 34px; height: 34px;
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 50%; color: var(--muted); cursor: pointer;
             font-size: 1.1rem; transition: all 0.2s;
         }
-        .modal__close:hover { background: rgba(0,0,0,0.08); color: var(--charcoal); }
-        .modal .form_integration_block { width: 90%; margin: 0 auto; }
+        .modal__close:hover { background: rgba(255,255,255,0.12); color: var(--white); }
+        .modal__title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px; font-weight: 800;
+            color: var(--white); margin-bottom: 4px;
+        }
+        .modal__sub { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+
+        /* Salebot form overrides */
+        .modal .form_integration_block { width: 100%; }
         .modal .form_integration_block input[type="text"],
         .modal .form_integration_block input[type="email"],
         .modal .form_integration_block input[type="tel"],
         .modal .form_integration_block input[type="number"],
         .modal .form_integration_block textarea,
         .modal .form_integration_block select {
-            width: 100% !important; background: #f5f5f7 !important;
-            border: 1.5px solid transparent !important; border-radius: 12px !important;
-            padding: 0.75rem 1rem !important; color: var(--charcoal) !important;
+            width: 100% !important; background: rgba(255,255,255,0.06) !important;
+            border: 1.5px solid rgba(255,255,255,0.1) !important; border-radius: 12px !important;
+            padding: 0.75rem 1rem !important; color: var(--white) !important;
             font-family: 'Inter', sans-serif !important; font-size: 0.95rem !important;
             outline: none !important; transition: all 0.2s !important;
         }
         .modal .form_integration_block input:focus,
         .modal .form_integration_block textarea:focus,
         .modal .form_integration_block select:focus {
-            border-color: var(--gold) !important; background: #fff !important;
-            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.2) !important;
+            border-color: var(--gold) !important;
+            background: rgba(201,168,76,0.06) !important;
+            box-shadow: 0 0 0 3px rgba(201,168,76,0.15) !important;
         }
         .modal .form_integration_block input::placeholder,
-        .modal .form_integration_block textarea::placeholder { color: #c7c7cc !important; }
+        .modal .form_integration_block textarea::placeholder { color: rgba(245,239,227,0.25) !important; }
         .modal .form_integration_block label {
-            color: var(--charcoal) !important; font-family: 'Inter', sans-serif !important;
+            color: rgba(245,239,227,0.7) !important;
+            font-family: 'Inter', sans-serif !important;
             font-size: 0.8rem !important; font-weight: 600 !important;
             margin-bottom: 0.35rem !important; display: block !important;
         }
@@ -208,13 +401,17 @@
         .modal .form_integration_block .btn,
         .modal .form_integration_block .submit-btn {
             width: 100% !important; padding: 0.875rem 1.5rem !important;
-            background: var(--charcoal) !important; color: #fff !important;
-            font-family: 'Inter', sans-serif !important; font-size: 1rem !important;
-            font-weight: 600 !important; border: none !important;
+            background: linear-gradient(135deg,#D4AF37,#C9A84C,#B8962A) !important;
+            color: #130E09 !important;
+            font-family: 'Montserrat', sans-serif !important; font-size: 1rem !important;
+            font-weight: 800 !important; border: none !important;
             border-radius: 14px !important; cursor: pointer !important;
-            transition: all 0.2s !important;
+            transition: all 0.2s !important; letter-spacing: 0.03em !important;
         }
-        .modal .form_integration_block button[type="submit"]:hover { background: #333 !important; }
+        .modal .form_integration_block button[type="submit"]:hover {
+            box-shadow: 0 4px 20px rgba(201,168,76,0.35) !important;
+            transform: translateY(-1px) !important;
+        }
         .modal .form_integration_block .salebot_button img,
         .modal .form_integration_block .salebot_button svg,
         .modal .form_integration_block .salebot_button .mes_ident { display: none !important; }
@@ -225,18 +422,17 @@
             font-size: 0.95rem !important; font-weight: 600 !important;
             border: none !important; border-radius: 14px !important;
             cursor: pointer !important; transition: all 0.2s !important;
-            margin-bottom: 0.5rem !important;
+            margin-bottom: 0.5rem !important; white-space: nowrap !important;
         }
         .modal .form_integration_block .tg_link { background: #2AABEE !important; }
         .modal .form_integration_block .tg_link:hover { background: #229ED9 !important; }
         .modal .form_integration_block .vk_link { background: #0077FF !important; }
         .modal .form_integration_block .vk_link:hover { background: #0066DD !important; }
-        .modal .form_integration_block .max_link { background: linear-gradient(90deg, #527CF2 0%, #9040C8 100%) !important; }
-        .modal .form_integration_block .max_link:hover { background: linear-gradient(90deg, #4870E0 0%, #8038B8 100%) !important; }
+        .modal .form_integration_block .max_link { background: linear-gradient(90deg,#527CF2 0%,#9040C8 100%) !important; }
         .modal .form_integration_block input[type="checkbox"] {
             -webkit-appearance: none !important; appearance: none !important;
             width: 44px !important; height: 24px !important; min-width: 44px !important;
-            background: #e5e5ea !important; background-image: none !important;
+            background: rgba(255,255,255,0.1) !important; background-image: none !important;
             border-radius: 12px !important; border: none !important;
             position: relative !important; cursor: pointer !important;
             transition: background 0.2s !important; padding: 0 !important; margin: 0 !important;
@@ -247,7 +443,7 @@
             width: 20px !important; height: 20px !important;
             background: #fff !important; border-radius: 50% !important;
             transition: transform 0.2s ease !important;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.15) !important; border: none !important;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3) !important; border: none !important;
         }
         .modal .form_integration_block input[type="checkbox"]:checked { background: var(--gold) !important; background-image: none !important; }
         .modal .form_integration_block input[type="checkbox"]::before { display: none !important; }
@@ -258,209 +454,299 @@
             display: flex !important; align-items: center !important; gap: 0.625rem !important;
         }
         .modal .form_integration_block div:has(> input[type="checkbox"]) a,
-        .modal .form_integration_block div:has(> input[type="checkbox"]) label,
         .modal .form_integration_block div:has(> input[type="checkbox"]) span,
         .modal .form_integration_block label:has(> input[type="checkbox"]) span,
         .modal .form_integration_block label:has(> input[type="checkbox"]) a {
             flex: 1 !important; font-size: 0.75rem !important;
-            line-height: 1.3 !important; color: #999 !important;
+            line-height: 1.3 !important; color: rgba(245,239,227,0.4) !important;
         }
         @media (max-width: 768px) {
             .modal-overlay { align-items: flex-end; padding: 0; }
             .modal {
-                padding: 1.5rem; border-radius: 20px 20px 0 0;
+                padding: 1.5rem; border-radius: 24px 24px 0 0;
                 max-height: 92dvh; overflow-y: auto; transform: translateY(100%);
             }
             .modal-overlay.active .modal { transform: translateY(0); }
-            .modal .form_integration_block { width: 100% !important; }
         }
-        .pulse {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            background: #4CAF50;
-            border-radius: 50%;
-            margin-right: 6px;
-            animation: pulse 2s infinite;
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 640px) {
+            .page { padding: 0 16px 64px; }
+
+            .main-grid {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            /* Speakers go horizontal at top on mobile */
+            .speakers-col {
+                flex-direction: row;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 12px;
+                padding: 0 0 32px;
+                position: static;
+                order: -1;
+            }
+            .spk-avatar {
+                width: 64px; height: 64px;
+            }
+
+            .timeline::before { left: 56px; }
+            .slot { grid-template-columns: 48px 1fr; gap: 0 20px; }
+            .slot::after { left: 53px; }
+            .slot-time { font-size: 12px; }
+            .slot-name { font-size: 15px; }
+
+            .cta-section { padding: 32px 24px; }
         }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(0.8); }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="header-title">День доходной <span>недвижимости</span></div>
-        <div class="header-date">28 марта 2026 — программа конференции</div>
-    </div>
 
-    <div class="schedule" id="schedule">
-        <div class="slot" data-start="09:30" data-end="10:00">
-            <div class="slot-time">09:30</div>
-            <div class="slot-content">
-                <div class="now-label"><span class="pulse"></span>Сейчас</div>
-                <div class="slot-topic">Сбор участников</div>
-                <div class="slot-desc">Подключение к трансляции, организационные объявления</div>
-            </div>
+<div class="page">
+
+    <!-- Back link -->
+    <a href="http://live.fin-ra.pro/room/invest_conf" class="back-link">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 3L5 8l5 5"/>
+        </svg>
+        Вернуться на конференцию
+    </a>
+
+    <!-- Hero -->
+    <header class="hero">
+        <div class="hero-eyebrow">28 марта 2026</div>
+        <h1 class="hero-title">День<br><em>доходной</em><br>недвижимости</h1>
+        <div class="hero-sub">
+            <span class="live-dot"></span>
+            Программа конференции · Онлайн-формат
         </div>
+    </header>
 
-        <div class="slot" data-start="10:00" data-end="10:30">
-            <div class="slot-time">10:00</div>
-            <div class="slot-content">
-                <div class="now-label"><span class="pulse"></span>Сейчас</div>
-                <div class="slot-speaker">
-                    <img src="../images/tolstyakov.jpg" alt="" class="slot-avatar">
-                    <div class="slot-name">Дмитрий Толстяков</div>
+    <!-- Main: timeline + speakers -->
+    <div class="main-grid">
+
+        <!-- Timeline -->
+        <div class="timeline" id="timeline">
+
+            <div class="slot slot-break" data-start="09:30" data-end="10:00">
+                <div class="slot-time">09:30</div>
+                <div class="slot-body">
+                    <div class="slot-now"><span class="live-dot"></span>Сейчас</div>
+                    <div class="slot-name">Сбор участников</div>
+                    <div class="slot-topic">Подключение к трансляции, организационные объявления</div>
                 </div>
-                <div class="slot-role">Ведущий конференции</div>
-                <div class="slot-topic">Открытие конференции</div>
             </div>
-        </div>
 
-        <div class="slot" data-start="10:30" data-end="11:30">
-            <div class="slot-time">10:30</div>
-            <div class="slot-content">
-                <div class="now-label"><span class="pulse"></span>Сейчас</div>
-                <div class="slot-speaker">
-                    <img src="../images/firsov.jpg" alt="" class="slot-avatar">
+            <div class="slot" data-start="10:00" data-end="10:30" data-spk="tolstyakov">
+                <div class="slot-time">10:00</div>
+                <div class="slot-body">
+                    <div class="slot-now"><span class="live-dot"></span>Сейчас</div>
+                    <div class="slot-name">Дмитрий Толстяков</div>
+                    <div class="slot-role">Ведущий конференции</div>
+                    <div class="slot-topic">Открытие конференции</div>
+                </div>
+            </div>
+
+            <div class="slot" data-start="10:30" data-end="11:30" data-spk="firsov">
+                <div class="slot-time">10:30</div>
+                <div class="slot-body">
+                    <div class="slot-now"><span class="live-dot"></span>Сейчас</div>
                     <div class="slot-name">Максим Фирсов</div>
+                    <div class="slot-role">Основатель АН «Свои» в Крыму</div>
+                    <div class="slot-topic">Стратегии инвестирования в курортную недвижимость Крыма</div>
                 </div>
-                <div class="slot-role">Основатель АН «Свои» в Крыму</div>
-                <div class="slot-topic">Стратегии инвестирования в курортную недвижимость Крыма</div>
             </div>
-        </div>
 
-        <div class="slot" data-start="11:30" data-end="12:30">
-            <div class="slot-time">11:30</div>
-            <div class="slot-content">
-                <div class="now-label"><span class="pulse"></span>Сейчас</div>
-                <div class="slot-speaker">
-                    <img src="../images/kirienko.jpg" alt="" class="slot-avatar">
+            <div class="slot" data-start="11:30" data-end="12:30" data-spk="kirienko">
+                <div class="slot-time">11:30</div>
+                <div class="slot-body">
+                    <div class="slot-now"><span class="live-dot"></span>Сейчас</div>
                     <div class="slot-name">Евгений Кириенко</div>
+                    <div class="slot-role">Собственник «Arbat Real Estate», наставник «Терра Таиланд»</div>
+                    <div class="slot-topic">Сравнение и выгоды от покупки квартиры в Москве за 20 млн руб и на Пхукете</div>
                 </div>
-                <div class="slot-role">Собственник «Arbat Real Estate», наставник «Терра Таиланд»</div>
-                <div class="slot-topic">Сравнение и выгоды от покупки квартиры в Москве за 20 млн руб и на Пхукете</div>
             </div>
-        </div>
 
-        <div class="slot" data-start="12:30" data-end="13:00">
-            <div class="slot-time">12:30</div>
-            <div class="slot-content">
-                <div class="now-label"><span class="pulse"></span>Сейчас</div>
-                <div class="slot-topic">Перерыв</div>
+            <div class="slot slot-break" data-start="12:30" data-end="13:00">
+                <div class="slot-time">12:30</div>
+                <div class="slot-body">
+                    <div class="slot-now"><span class="live-dot"></span>Сейчас</div>
+                    <div class="slot-name">Перерыв</div>
+                </div>
             </div>
-        </div>
 
-        <div class="slot" data-start="13:00" data-end="14:00">
-            <div class="slot-time">13:00</div>
-            <div class="slot-content">
-                <div class="now-label"><span class="pulse"></span>Сейчас</div>
-                <div class="slot-speaker">
-                    <img src="../images/rebrikov.jpg" alt="" class="slot-avatar">
+            <div class="slot" data-start="13:00" data-end="14:00" data-spk="rebrikov">
+                <div class="slot-time">13:00</div>
+                <div class="slot-body">
+                    <div class="slot-now"><span class="live-dot"></span>Сейчас</div>
                     <div class="slot-name">Антон Ребриков</div>
+                    <div class="slot-role">Эксперт и организатор коллективных земельных инвестиций</div>
+                    <div class="slot-topic">Земля Крыма как инвестиционный актив: как заходить рано, расти спокойно, выходить по плану и получить доходность не ниже 30% годовых</div>
                 </div>
-                <div class="slot-role">Эксперт и организатор коллективных земельных инвестиций</div>
-                <div class="slot-topic">Земля Крыма как инвестиционный актив: как заходить рано, расти спокойно, выходить по плану и получить доходность не ниже 30% годовых</div>
             </div>
-        </div>
 
-        <div class="slot" data-start="14:00" data-end="15:00">
-            <div class="slot-time">14:00</div>
-            <div class="slot-content">
-                <div class="now-label"><span class="pulse"></span>Сейчас</div>
-                <div class="slot-speaker">
-                    <img src="../images/ardonskaya.jpg" alt="" class="slot-avatar">
+            <div class="slot" data-start="14:00" data-end="15:00" data-spk="ardonskaya">
+                <div class="slot-time">14:00</div>
+                <div class="slot-body">
+                    <div class="slot-now"><span class="live-dot"></span>Сейчас</div>
                     <div class="slot-name">Наталья Ардонская</div>
+                    <div class="slot-role">Инвестор-практик и эксперт в малой бюджетной недвижимости</div>
+                    <div class="slot-topic">Инвестиции в кладовки без иллюзий: что работает в 2026 году</div>
                 </div>
-                <div class="slot-role">Инвестор-практик и эксперт в малой бюджетной недвижимости</div>
-                <div class="slot-topic">Инвестиции в кладовки без иллюзий: что работает в 2026 году</div>
             </div>
-        </div>
 
-        <div class="slot" data-start="15:00" data-end="16:00">
-            <div class="slot-time">15:00</div>
-            <div class="slot-content">
-                <div class="now-label"><span class="pulse"></span>Сейчас</div>
-                <div class="slot-speaker">
-                    <img src="../images/tolstyakov.jpg" alt="" class="slot-avatar">
+            <div class="slot" data-start="15:00" data-end="16:00" data-spk="tolstyakov">
+                <div class="slot-time">15:00</div>
+                <div class="slot-body">
+                    <div class="slot-now"><span class="live-dot"></span>Сейчас</div>
                     <div class="slot-name">Дмитрий Толстяков</div>
+                    <div class="slot-role">Ведущий конференции</div>
+                    <div class="slot-topic">Подведение итогов конференции, сессия ответов на вопросы</div>
                 </div>
-                <div class="slot-role">Ведущий конференции</div>
-                <div class="slot-topic">Подведение итогов конференции, сессия ответов на вопросы</div>
+            </div>
+
+        </div><!-- /timeline -->
+
+        <!-- Speakers column -->
+        <div class="speakers-col" id="speakersCol">
+            <div class="spk-avatar" id="spk-tolstyakov" title="Дмитрий Толстяков">
+                <img src="../images/tolstyakov.jpg" alt="Дмитрий Толстяков" loading="lazy">
+                <span class="spk-name-tip">Толстяков</span>
+            </div>
+            <div class="spk-avatar" id="spk-firsov" title="Максим Фирсов">
+                <img src="../images/firsov.jpg" alt="Максим Фирсов" loading="lazy">
+                <span class="spk-name-tip">Фирсов</span>
+            </div>
+            <div class="spk-avatar" id="spk-kirienko" title="Евгений Кириенко">
+                <img src="../images/kirienko.jpg" alt="Евгений Кириенко" loading="lazy">
+                <span class="spk-name-tip">Кириенко</span>
+            </div>
+            <div class="spk-avatar" id="spk-rebrikov" title="Антон Ребриков">
+                <img src="../images/rebrikov.jpg" alt="Антон Ребриков" loading="lazy">
+                <span class="spk-name-tip">Ребриков</span>
+            </div>
+            <div class="spk-avatar" id="spk-ardonskaya" title="Наталья Ардонская">
+                <img src="../images/ardonskaya.jpg" alt="Наталья Ардонская" loading="lazy">
+                <span class="spk-name-tip">Ардонская</span>
             </div>
         </div>
-    </div>
 
-    <a href="http://live.fin-ra.pro/room/invest_conf" class="back-link">← Вернуться на конференцию</a>
+    </div><!-- /main-grid -->
 
-    <div class="upgrade-banner">
-        <div class="upgrade-text">Получите записи всех выступлений за <strong>500 ₽</strong></div>
-        <button class="upgrade-btn" onclick="openPaidModal()">Получить запись конференции</button>
-    </div>
+    <div class="divider"></div>
 
-    <!-- Paid modal -->
-    <div class="modal-overlay" id="paidModalOverlay" onclick="closePaidModalOutside(event)">
-        <div class="modal">
-            <button class="modal__close" onclick="closePaidModal()">&times;</button>
-            <script src='https://salebot.pro/js/form_scripts.js'></script>
-            <div class='form_integration_block'></div>
-            <script>
-                FormIntegration.init({
-                    project_id:317313,
-                    guid:'4965f149cf3f331b35119e0787e32842'
-                })
-            </script>
+    <!-- CTA -->
+    <div class="cta-section">
+        <div class="cta-label">Записи выступлений</div>
+        <div class="cta-title">Получите доступ ко всем записям</div>
+        <div class="cta-sub">Смотрите все выступления в записи в удобное время</div>
+        <div class="cta-price-wrap">
+            <span class="cta-price">500 ₽</span>
+            <span class="cta-price-note">— единоразово</span>
         </div>
+        <button class="cta-btn" onclick="openPaidModal()">
+            Получить запись
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 8h10M9 4l4 4-4 4"/>
+            </svg>
+        </button>
     </div>
 
-    <script>
-        function openPaidModal() {
-            document.getElementById('paidModalOverlay').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        function closePaidModal() {
-            document.getElementById('paidModalOverlay').classList.remove('active');
-            document.body.style.overflow = '';
-        }
-        function closePaidModalOutside(e) {
-            if (e.target === e.currentTarget) closePaidModal();
-        }
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') closePaidModal(); });
-    </script>
+</div><!-- /page -->
 
-    <script>
-        function updateSchedule() {
-            const now = new Date();
-            const slots = document.querySelectorAll('.slot');
-            let foundActive = false;
+<!-- Paid Modal -->
+<div class="modal-overlay" id="paidModalOverlay" onclick="closePaidModalOutside(event)">
+    <div class="modal">
+        <button class="modal__close" onclick="closePaidModal()" aria-label="Закрыть">&times;</button>
+        <div class="modal__title">Доступ к записям</div>
+        <div class="modal__sub">Все выступления после конференции</div>
+        <script src='https://salebot.pro/js/form_scripts.js'></script>
+        <div class='form_integration_block'></div>
+        <script>
+            FormIntegration.init({
+                project_id: 317313,
+                guid: '4965f149cf3f331b35119e0787e32842'
+            })
+        </script>
+    </div>
+</div>
 
-            slots.forEach(slot => {
-                const [sh, sm] = slot.dataset.start.split(':').map(Number);
-                const [eh, em] = slot.dataset.end.split(':').map(Number);
-                const start = new Date(2026, 2, 28, sh, sm);
-                const end = new Date(2026, 2, 28, eh, em);
+<script>
+    /* ── Modal ── */
+    function openPaidModal() {
+        document.getElementById('paidModalOverlay').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closePaidModal() {
+        document.getElementById('paidModalOverlay').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    function closePaidModalOutside(e) {
+        if (e.target === e.currentTarget) closePaidModal();
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closePaidModal(); });
 
-                slot.classList.remove('active', 'past', 'upcoming');
+    /* ── Live schedule ── */
+    function updateSchedule() {
+        const now = new Date();
+        const confDate = new Date(2026, 2, 28); // March 28
+        const slots = document.querySelectorAll('.slot');
+        let activeSpk = null;
 
-                if (now >= start && now < end) {
-                    slot.classList.add('active');
-                    foundActive = true;
-                } else if (now >= end) {
-                    slot.classList.add('past');
-                } else {
-                    slot.classList.add('upcoming');
-                }
-            });
+        slots.forEach(slot => {
+            const [sh, sm] = slot.dataset.start.split(':').map(Number);
+            const [eh, em] = slot.dataset.end.split(':').map(Number);
+            const start = new Date(2026, 2, 28, sh, sm);
+            const end   = new Date(2026, 2, 28, eh, em);
 
-            // If not conference day, show all as upcoming
-            if (!foundActive && now < new Date(2026, 2, 28, 9, 30)) {
-                slots.forEach(s => { s.classList.remove('past'); s.classList.add('upcoming'); });
+            slot.classList.remove('active', 'past', 'upcoming');
+
+            if (now >= start && now < end) {
+                slot.classList.add('active');
+                if (slot.dataset.spk) activeSpk = slot.dataset.spk;
+            } else if (now >= end) {
+                slot.classList.add('past');
+            } else {
+                slot.classList.add('upcoming');
             }
+        });
+
+        // Highlight active speaker avatar
+        document.querySelectorAll('.spk-avatar').forEach(el => el.classList.remove('active-spk'));
+        if (activeSpk) {
+            const spkEl = document.getElementById('spk-' + activeSpk);
+            if (spkEl) spkEl.classList.add('active-spk');
         }
 
-        updateSchedule();
-        setInterval(updateSchedule, 60000);
-    </script>
+        // Before conference — all upcoming
+        if (now < new Date(2026, 2, 28, 9, 30)) {
+            slots.forEach(s => { s.classList.remove('past'); s.classList.add('upcoming'); });
+        }
+    }
+
+    updateSchedule();
+    setInterval(updateSchedule, 30000);
+
+    /* ── Fade-in on scroll ── */
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) { e.target.style.opacity = ''; e.target.style.transform = ''; }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.slot').forEach((el, i) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(12px)';
+        el.style.transition = `opacity 0.5s ease ${i * 60}ms, transform 0.5s ease ${i * 60}ms`;
+        observer.observe(el);
+    });
+</script>
+
 </body>
 </html>
