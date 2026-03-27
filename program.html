@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Программа конференции — День доходной недвижимости</title>
+    <link rel="icon" href="https://fin-ra.ru/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --charcoal: #1A1A1A;
+            --gold: #C9A84C;
+            --cream: #F5F0E8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            min-height: 100vh;
+        }
+        .header {
+            background: var(--charcoal);
+            padding: 20px 24px;
+            text-align: center;
+        }
+        .header-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .header-title span { color: var(--gold); }
+        .header-date {
+            font-size: 13px;
+            color: rgba(255,255,255,0.5);
+            margin-top: 4px;
+        }
+        .schedule {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 24px 16px 48px;
+        }
+        .now-label {
+            display: none;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+        .slot {
+            display: flex;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            opacity: 0.5;
+            transition: opacity 0.3s;
+        }
+        .slot.active {
+            opacity: 1;
+            background: #fff;
+            margin: 0 -16px;
+            padding: 16px;
+            border-radius: 12px;
+            border-bottom: none;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        .slot.active .now-label { display: block; }
+        .slot.upcoming { opacity: 1; }
+        .slot.past { opacity: 0.4; }
+        .slot-time {
+            min-width: 52px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gold);
+            padding-top: 2px;
+        }
+        .slot-content { flex: 1; }
+        .slot-speaker {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+        .slot-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .slot-name {
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .slot-role {
+            font-size: 11px;
+            color: #999;
+            margin-bottom: 6px;
+        }
+        .slot-topic {
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+        .slot-desc {
+            font-size: 12px;
+            color: #777;
+            margin-top: 4px;
+            line-height: 1.4;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            padding: 24px;
+            font-size: 13px;
+            color: var(--gold);
+            text-decoration: none;
+        }
+        .back-link:hover { text-decoration: underline; }
+        .pulse {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #4CAF50;
+            border-radius: 50%;
+            margin-right: 6px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-title">День доходной <span>недвижимости</span></div>
+        <div class="header-date">28 марта 2026 — программа конференции</div>
+    </div>
+
+    <div class="schedule" id="schedule">
+        <div class="slot" data-start="09:30" data-end="10:00">
+            <div class="slot-time">09:30</div>
+            <div class="slot-content">
+                <div class="now-label"><span class="pulse"></span>Сейчас</div>
+                <div class="slot-topic">Сбор участников</div>
+                <div class="slot-desc">Подключение к трансляции, организационные объявления</div>
+            </div>
+        </div>
+
+        <div class="slot" data-start="10:00" data-end="10:30">
+            <div class="slot-time">10:00</div>
+            <div class="slot-content">
+                <div class="now-label"><span class="pulse"></span>Сейчас</div>
+                <div class="slot-speaker">
+                    <img src="images/tolstyakov.jpg" alt="" class="slot-avatar">
+                    <div class="slot-name">Дмитрий Толстяков</div>
+                </div>
+                <div class="slot-role">Ведущий конференции</div>
+                <div class="slot-topic">Открытие конференции</div>
+            </div>
+        </div>
+
+        <div class="slot" data-start="10:30" data-end="11:30">
+            <div class="slot-time">10:30</div>
+            <div class="slot-content">
+                <div class="now-label"><span class="pulse"></span>Сейчас</div>
+                <div class="slot-speaker">
+                    <img src="images/firsov.jpg" alt="" class="slot-avatar">
+                    <div class="slot-name">Максим Фирсов</div>
+                </div>
+                <div class="slot-role">Основатель АН «Свои» в Крыму</div>
+                <div class="slot-topic">Стратегии инвестирования в курортную недвижимость Крыма</div>
+            </div>
+        </div>
+
+        <div class="slot" data-start="11:30" data-end="12:30">
+            <div class="slot-time">11:30</div>
+            <div class="slot-content">
+                <div class="now-label"><span class="pulse"></span>Сейчас</div>
+                <div class="slot-speaker">
+                    <img src="images/kirienko.jpg" alt="" class="slot-avatar">
+                    <div class="slot-name">Евгений Кириенко</div>
+                </div>
+                <div class="slot-role">Собственник «Arbat Real Estate», наставник «Терра Таиланд»</div>
+                <div class="slot-topic">Сравнение и выгоды от покупки квартиры в Москве за 20 млн руб и на Пхукете</div>
+            </div>
+        </div>
+
+        <div class="slot" data-start="12:30" data-end="13:00">
+            <div class="slot-time">12:30</div>
+            <div class="slot-content">
+                <div class="now-label"><span class="pulse"></span>Сейчас</div>
+                <div class="slot-topic">Перерыв</div>
+            </div>
+        </div>
+
+        <div class="slot" data-start="13:00" data-end="14:00">
+            <div class="slot-time">13:00</div>
+            <div class="slot-content">
+                <div class="now-label"><span class="pulse"></span>Сейчас</div>
+                <div class="slot-speaker">
+                    <img src="images/rebrikov.jpg" alt="" class="slot-avatar">
+                    <div class="slot-name">Антон Ребриков</div>
+                </div>
+                <div class="slot-role">Эксперт и организатор коллективных земельных инвестиций</div>
+                <div class="slot-topic">Земля Крыма как инвестиционный актив: как заходить рано, расти спокойно, выходить по плану и получить доходность не ниже 30% годовых</div>
+            </div>
+        </div>
+
+        <div class="slot" data-start="14:00" data-end="15:00">
+            <div class="slot-time">14:00</div>
+            <div class="slot-content">
+                <div class="now-label"><span class="pulse"></span>Сейчас</div>
+                <div class="slot-speaker">
+                    <img src="images/ardonskaya.jpg" alt="" class="slot-avatar">
+                    <div class="slot-name">Наталья Ардонская</div>
+                </div>
+                <div class="slot-role">Инвестор-практик и эксперт в малой бюджетной недвижимости</div>
+                <div class="slot-topic">Инвестиции в кладовки без иллюзий: что работает в 2026 году</div>
+            </div>
+        </div>
+
+        <div class="slot" data-start="15:00" data-end="16:00">
+            <div class="slot-time">15:00</div>
+            <div class="slot-content">
+                <div class="now-label"><span class="pulse"></span>Сейчас</div>
+                <div class="slot-speaker">
+                    <img src="images/tolstyakov.jpg" alt="" class="slot-avatar">
+                    <div class="slot-name">Дмитрий Толстяков</div>
+                </div>
+                <div class="slot-role">Ведущий конференции</div>
+                <div class="slot-topic">Подведение итогов конференции, сессия ответов на вопросы</div>
+            </div>
+        </div>
+    </div>
+
+    <a href="https://conf.fin-ra.pro" class="back-link">← Вернуться на сайт конференции</a>
+
+    <script>
+        function updateSchedule() {
+            const now = new Date();
+            const slots = document.querySelectorAll('.slot');
+            let foundActive = false;
+
+            slots.forEach(slot => {
+                const [sh, sm] = slot.dataset.start.split(':').map(Number);
+                const [eh, em] = slot.dataset.end.split(':').map(Number);
+                const start = new Date(2026, 2, 28, sh, sm);
+                const end = new Date(2026, 2, 28, eh, em);
+
+                slot.classList.remove('active', 'past', 'upcoming');
+
+                if (now >= start && now < end) {
+                    slot.classList.add('active');
+                    foundActive = true;
+                } else if (now >= end) {
+                    slot.classList.add('past');
+                } else {
+                    slot.classList.add('upcoming');
+                }
+            });
+
+            // If not conference day, show all as upcoming
+            if (!foundActive && now < new Date(2026, 2, 28, 9, 30)) {
+                slots.forEach(s => { s.classList.remove('past'); s.classList.add('upcoming'); });
+            }
+        }
+
+        updateSchedule();
+        setInterval(updateSchedule, 60000);
+    </script>
+</body>
+</html>
