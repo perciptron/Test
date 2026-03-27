@@ -227,15 +227,27 @@
             object-fit: cover;
             display: block;
             border: 2px solid var(--bg-line);
-            transition: border-color 0.3s, transform 0.3s;
+            opacity: 0;
+            transform: translateY(28px) scale(0.88);
+            transition:
+                opacity 0.55s ease,
+                transform 0.65s cubic-bezier(0.34, 1.52, 0.64, 1),
+                border-color 0.3s;
         }
-        .slot.active .slot-avatar img {
+        .slot-avatar img.avatar-in {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        .slot.active .slot-avatar img.avatar-in {
             border-color: var(--gold);
             box-shadow: 0 0 0 3px var(--gold-glow), 0 0 16px rgba(201,168,76,0.18);
         }
-        .slot:hover .slot-avatar img {
+        .slot:hover .slot-avatar img.avatar-in {
             border-color: var(--gold-dk);
-            transform: scale(1.05);
+            transform: translateY(0) scale(1.05);
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .slot-avatar img { transition: none !important; }
         }
 
         /* ── CTA SECTION ── */
@@ -684,10 +696,14 @@
     updateSchedule();
     setInterval(updateSchedule, 30000);
 
-    /* ── Fade-in on scroll ── */
-    const observer = new IntersectionObserver((entries) => {
+    /* ── Fade-in slots on scroll ── */
+    const slotObserver = new IntersectionObserver((entries) => {
         entries.forEach(e => {
-            if (e.isIntersecting) { e.target.style.opacity = ''; e.target.style.transform = ''; }
+            if (e.isIntersecting) {
+                e.target.style.opacity = '';
+                e.target.style.transform = '';
+                slotObserver.unobserve(e.target);
+            }
         });
     }, { threshold: 0.1 });
 
@@ -695,7 +711,22 @@
         el.style.opacity = '0';
         el.style.transform = 'translateY(12px)';
         el.style.transition = `opacity 0.5s ease ${i * 60}ms, transform 0.5s ease ${i * 60}ms`;
-        observer.observe(el);
+        slotObserver.observe(el);
+    });
+
+    /* ── Avatar snap-in on scroll ── */
+    const avatarObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                // small delay so avatar pops in after the row text
+                setTimeout(() => e.target.classList.add('avatar-in'), 160);
+                avatarObserver.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.3, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.slot-avatar img').forEach(img => {
+        avatarObserver.observe(img);
     });
 </script>
 
