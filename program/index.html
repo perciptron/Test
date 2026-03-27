@@ -108,11 +108,7 @@
 
         /* ── MAIN GRID ── */
         .main-grid {
-            display: grid;
-            grid-template-columns: 1fr 96px;
-            gap: 0 40px;
             padding-top: 40px;
-            align-items: start;
         }
 
         /* ── TIMELINE ── */
@@ -130,11 +126,15 @@
 
         .slot {
             display: grid;
-            grid-template-columns: 64px 1fr;
+            grid-template-columns: 64px 1fr 88px;
             gap: 0 24px;
             padding: 0 0 36px;
             position: relative;
             transition: opacity 0.4s;
+            align-items: start;
+        }
+        .slot-break {
+            grid-template-columns: 64px 1fr;
         }
         .slot.past { opacity: 0.38; }
         .slot.active { opacity: 1; }
@@ -213,47 +213,29 @@
             margin-left: -16px;
         }
 
-        /* ── SPEAKERS COLUMN ── */
-        .speakers-col {
+        /* ── SPEAKER AVATAR inside slot ── */
+        .slot-avatar {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 16px;
-            padding-top: 4px;
-            position: sticky;
-            top: 24px;
+            gap: 6px;
+            padding-top: 2px;
         }
-
-        .spk-avatar {
-            width: 84px; height: 84px;
+        .slot-avatar img {
+            width: 72px; height: 72px;
             border-radius: 50%;
-            overflow: hidden;
-            border: 2px solid var(--bg-line);
-            transition: all 0.3s;
-            flex-shrink: 0;
-            position: relative;
-        }
-        .spk-avatar img {
-            width: 100%; height: 100%;
             object-fit: cover;
             display: block;
+            border: 2px solid var(--bg-line);
+            transition: border-color 0.3s, transform 0.3s;
         }
-        .spk-avatar.active-spk {
+        .slot.active .slot-avatar img {
             border-color: var(--gold);
-            box-shadow: 0 0 0 3px var(--gold-glow), 0 0 20px rgba(201,168,76,0.2);
+            box-shadow: 0 0 0 3px var(--gold-glow), 0 0 16px rgba(201,168,76,0.18);
         }
-        .spk-avatar .spk-name-tip {
-            position: absolute; bottom: -24px; left: 50%;
-            transform: translateX(-50%);
-            font-size: 9px; font-weight: 600;
-            color: var(--gold); white-space: nowrap;
-            opacity: 0; transition: opacity 0.2s;
-            pointer-events: none;
-        }
-        .spk-avatar:hover .spk-name-tip { opacity: 1; }
-        .spk-avatar:hover {
+        .slot:hover .slot-avatar img {
             border-color: var(--gold-dk);
-            transform: scale(1.06);
+            transform: scale(1.05);
         }
 
         /* ── CTA SECTION ── */
@@ -473,30 +455,13 @@
         @media (max-width: 640px) {
             .page { padding: 0 16px 64px; }
 
-            .main-grid {
-                grid-template-columns: 1fr;
-                gap: 0;
-            }
-
-            /* Speakers go horizontal at top on mobile */
-            .speakers-col {
-                flex-direction: row;
-                justify-content: center;
-                flex-wrap: wrap;
-                gap: 12px;
-                padding: 0 0 32px;
-                position: static;
-                order: -1;
-            }
-            .spk-avatar {
-                width: 64px; height: 64px;
-            }
-
-            .timeline::before { left: 56px; }
-            .slot { grid-template-columns: 48px 1fr; gap: 0 20px; }
-            .slot::after { left: 53px; }
-            .slot-time { font-size: 12px; }
+            .timeline::before { left: 48px; }
+            .slot { grid-template-columns: 40px 1fr 60px; gap: 0 16px; }
+            .slot-break { grid-template-columns: 40px 1fr; }
+            .slot::after { left: 45px; }
+            .slot-time { font-size: 11px; }
             .slot-name { font-size: 15px; }
+            .slot-avatar img { width: 52px; height: 52px; }
 
             .cta-section { padding: 32px 24px; }
         }
@@ -551,6 +516,9 @@
                     <div class="slot-role">Ведущий конференции</div>
                     <div class="slot-topic">Открытие конференции</div>
                 </div>
+                <div class="slot-avatar">
+                    <img src="../images/tolstyakov.jpg" alt="Дмитрий Толстяков" loading="lazy">
+                </div>
             </div>
 
             <div class="slot" data-start="10:30" data-end="11:30" data-spk="firsov">
@@ -561,6 +529,9 @@
                     <div class="slot-role">Основатель АН «Свои» в Крыму</div>
                     <div class="slot-topic">Стратегии инвестирования в курортную недвижимость Крыма</div>
                 </div>
+                <div class="slot-avatar">
+                    <img src="../images/firsov.jpg" alt="Максим Фирсов" loading="lazy">
+                </div>
             </div>
 
             <div class="slot" data-start="11:30" data-end="12:30" data-spk="kirienko">
@@ -570,6 +541,9 @@
                     <div class="slot-name">Евгений Кириенко</div>
                     <div class="slot-role">Собственник «Arbat Real Estate», наставник «Терра Таиланд»</div>
                     <div class="slot-topic">Сравнение и выгоды от покупки квартиры в Москве за 20 млн руб и на Пхукете</div>
+                </div>
+                <div class="slot-avatar">
+                    <img src="../images/kirienko.jpg" alt="Евгений Кириенко" loading="lazy">
                 </div>
             </div>
 
@@ -589,6 +563,9 @@
                     <div class="slot-role">Эксперт и организатор коллективных земельных инвестиций</div>
                     <div class="slot-topic">Земля Крыма как инвестиционный актив: как заходить рано, расти спокойно, выходить по плану и получить доходность не ниже 30% годовых</div>
                 </div>
+                <div class="slot-avatar">
+                    <img src="../images/rebrikov.jpg" alt="Антон Ребриков" loading="lazy">
+                </div>
             </div>
 
             <div class="slot" data-start="14:00" data-end="15:00" data-spk="ardonskaya">
@@ -598,6 +575,9 @@
                     <div class="slot-name">Наталья Ардонская</div>
                     <div class="slot-role">Инвестор-практик и эксперт в малой бюджетной недвижимости</div>
                     <div class="slot-topic">Инвестиции в кладовки без иллюзий: что работает в 2026 году</div>
+                </div>
+                <div class="slot-avatar">
+                    <img src="../images/ardonskaya.jpg" alt="Наталья Ардонская" loading="lazy">
                 </div>
             </div>
 
@@ -609,33 +589,12 @@
                     <div class="slot-role">Ведущий конференции</div>
                     <div class="slot-topic">Подведение итогов конференции, сессия ответов на вопросы</div>
                 </div>
+                <div class="slot-avatar">
+                    <img src="../images/tolstyakov.jpg" alt="Дмитрий Толстяков" loading="lazy">
+                </div>
             </div>
 
         </div><!-- /timeline -->
-
-        <!-- Speakers column -->
-        <div class="speakers-col" id="speakersCol">
-            <div class="spk-avatar" id="spk-tolstyakov" title="Дмитрий Толстяков">
-                <img src="../images/tolstyakov.jpg" alt="Дмитрий Толстяков" loading="lazy">
-                <span class="spk-name-tip">Толстяков</span>
-            </div>
-            <div class="spk-avatar" id="spk-firsov" title="Максим Фирсов">
-                <img src="../images/firsov.jpg" alt="Максим Фирсов" loading="lazy">
-                <span class="spk-name-tip">Фирсов</span>
-            </div>
-            <div class="spk-avatar" id="spk-kirienko" title="Евгений Кириенко">
-                <img src="../images/kirienko.jpg" alt="Евгений Кириенко" loading="lazy">
-                <span class="spk-name-tip">Кириенко</span>
-            </div>
-            <div class="spk-avatar" id="spk-rebrikov" title="Антон Ребриков">
-                <img src="../images/rebrikov.jpg" alt="Антон Ребриков" loading="lazy">
-                <span class="spk-name-tip">Ребриков</span>
-            </div>
-            <div class="spk-avatar" id="spk-ardonskaya" title="Наталья Ардонская">
-                <img src="../images/ardonskaya.jpg" alt="Наталья Ардонская" loading="lazy">
-                <span class="spk-name-tip">Ардонская</span>
-            </div>
-        </div>
 
     </div><!-- /main-grid -->
 
@@ -697,7 +656,6 @@
         const now = new Date();
         const confDate = new Date(2026, 2, 28); // March 28
         const slots = document.querySelectorAll('.slot');
-        let activeSpk = null;
 
         slots.forEach(slot => {
             const [sh, sm] = slot.dataset.start.split(':').map(Number);
@@ -709,20 +667,12 @@
 
             if (now >= start && now < end) {
                 slot.classList.add('active');
-                if (slot.dataset.spk) activeSpk = slot.dataset.spk;
             } else if (now >= end) {
                 slot.classList.add('past');
             } else {
                 slot.classList.add('upcoming');
             }
         });
-
-        // Highlight active speaker avatar
-        document.querySelectorAll('.spk-avatar').forEach(el => el.classList.remove('active-spk'));
-        if (activeSpk) {
-            const spkEl = document.getElementById('spk-' + activeSpk);
-            if (spkEl) spkEl.classList.add('active-spk');
-        }
 
         // Before conference — all upcoming
         if (now < new Date(2026, 2, 28, 9, 30)) {
