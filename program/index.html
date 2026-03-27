@@ -121,6 +121,150 @@
             text-decoration: none;
         }
         .back-link:hover { text-decoration: underline; }
+        .upgrade-banner {
+            max-width: 600px;
+            margin: 0 auto 32px;
+            padding: 24px;
+            background: var(--charcoal);
+            border-radius: 14px;
+            text-align: center;
+        }
+        .upgrade-text {
+            color: rgba(255,255,255,0.8);
+            font-size: 15px;
+            margin-bottom: 16px;
+        }
+        .upgrade-text strong { color: var(--gold); font-size: 18px; }
+        .upgrade-btn {
+            background: linear-gradient(135deg, #D4AF37, #C9A84C, #BF953F);
+            color: var(--charcoal);
+            border: none;
+            padding: 12px 32px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .upgrade-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(201,168,76,0.3);
+        }
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(0,0,0,0.25);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal {
+            background: #fff;
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: 20px;
+            padding: 2.5rem;
+            max-width: 460px;
+            width: 100%;
+            position: relative;
+            transform: translateY(24px) scale(0.96);
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.08);
+        }
+        .modal-overlay.active .modal { transform: translateY(0) scale(1); }
+        .modal__close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.03);
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.125rem;
+            color: #78776e;
+        }
+        .modal .form_integration_block { width: 90%; margin: 0 auto; }
+        .modal .form_integration_block input[type="text"],
+        .modal .form_integration_block input[type="email"],
+        .modal .form_integration_block input[type="tel"],
+        .modal .form_integration_block select {
+            width: 100% !important;
+            background: #fafaf9 !important;
+            border: 1.5px solid rgba(0,0,0,0.07) !important;
+            border-radius: 10px !important;
+            padding: 0.75rem 1rem !important;
+            font-size: 0.95rem !important;
+            outline: none !important;
+        }
+        .modal .form_integration_block button[type="submit"],
+        .modal .form_integration_block button {
+            width: 100% !important;
+            padding: 0.875rem !important;
+            background: var(--charcoal) !important;
+            color: #fff !important;
+            font-size: 1rem !important;
+            font-weight: 700 !important;
+            border: none !important;
+            border-radius: 14px !important;
+            cursor: pointer !important;
+        }
+        .modal .form_integration_block input[type="checkbox"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 40px !important;
+            height: 22px !important;
+            min-width: 40px;
+            background: #d4d4d0 !important;
+            border-radius: 12px !important;
+            border: none !important;
+            position: relative;
+            cursor: pointer;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .modal .form_integration_block input[type="checkbox"]::after {
+            content: '';
+            position: absolute;
+            top: 2px; left: 2px;
+            width: 18px; height: 18px;
+            background: #fff;
+            border-radius: 50%;
+            transition: transform 0.25s;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+        }
+        .modal .form_integration_block input[type="checkbox"]:checked {
+            background: var(--gold) !important;
+            background-image: none !important;
+        }
+        .modal .form_integration_block input[type="checkbox"]::before { display: none !important; }
+        .modal .form_integration_block input[type="checkbox"]:checked::after { transform: translateX(18px); }
+        .modal .form_integration_block label { font-size: 0.75rem !important; color: #999 !important; }
+        @media (max-width: 768px) {
+            .modal-overlay { align-items: flex-end; padding: 0; }
+            .modal {
+                padding: 1.5rem;
+                border-radius: 20px 20px 0 0;
+                max-height: 92dvh;
+                overflow-y: auto;
+                transform: translateY(100%);
+            }
+            .modal-overlay.active .modal { transform: translateY(0); }
+            .modal .form_integration_block { width: 100% !important; }
+        }
         .pulse {
             display: inline-block;
             width: 8px;
@@ -239,7 +383,42 @@
         </div>
     </div>
 
-    <a href="https://conf.fin-ra.pro" class="back-link">← Вернуться на сайт конференции</a>
+    <a href="http://live.fin-ra.pro/room/invest_conf" class="back-link">← Вернуться на конференцию</a>
+
+    <div class="upgrade-banner">
+        <div class="upgrade-text">Получите записи всех выступлений за <strong>500 ₽</strong></div>
+        <button class="upgrade-btn" onclick="openPaidModal()">Получить запись конференции</button>
+    </div>
+
+    <!-- Paid modal -->
+    <div class="modal-overlay" id="paidModalOverlay" onclick="closePaidModalOutside(event)">
+        <div class="modal">
+            <button class="modal__close" onclick="closePaidModal()">&times;</button>
+            <script src='https://salebot.pro/js/form_scripts.js'></script>
+            <div class='form_integration_block'></div>
+            <script>
+                FormIntegration.init({
+                    project_id:317313,
+                    guid:'4965f149cf3f331b35119e0787e32842'
+                })
+            </script>
+        </div>
+    </div>
+
+    <script>
+        function openPaidModal() {
+            document.getElementById('paidModalOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closePaidModal() {
+            document.getElementById('paidModalOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        function closePaidModalOutside(e) {
+            if (e.target === e.currentTarget) closePaidModal();
+        }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closePaidModal(); });
+    </script>
 
     <script>
         function updateSchedule() {
