@@ -1271,14 +1271,14 @@ footer {
 .hero-cta-group { animation: fadeInUp 0.8s ease-out 0.4s both; }
 .hero-stats-row { animation: fadeInUp 0.8s ease-out 0.5s both; }
 
-/* ===== SALEBOT POPUP (per TZ) ===== */
+/* ===== SALEBOT POPUP — matched to guide project ===== */
 
 /* Overlay */
 .modal-overlay {
     position: fixed;
     inset: 0;
     z-index: 1000;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0,0,0,0.4);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1321,9 +1321,9 @@ footer {
     background: rgba(0,0,0,0.04);
     border: none;
     border-radius: 50%;
+    color: #78776e;
     cursor: pointer;
     font-size: 1.1rem;
-    color: #78776e;
     transition: all 0.2s;
 }
 .modal__close:hover {
@@ -1331,13 +1331,12 @@ footer {
     color: var(--charcoal);
 }
 
-/* Ширина формы внутри модалки */
+/* === SALEBOT FORM === */
 .modal .form_integration_block {
     width: 90%;
     margin: 0 auto;
 }
 
-/* Инпуты */
 .modal .form_integration_block input[type="text"],
 .modal .form_integration_block input[type="email"],
 .modal .form_integration_block input[type="tel"],
@@ -1349,12 +1348,13 @@ footer {
     border: 1.5px solid transparent !important;
     border-radius: 12px !important;
     padding: 0.75rem 1rem !important;
-    font-size: 0.95rem !important;
+    color: var(--charcoal) !important;
     font-family: 'Inter', sans-serif !important;
+    font-size: 0.95rem !important;
     outline: none !important;
-    box-sizing: border-box !important;
-    transition: all 0.2s ease !important;
+    transition: all 0.2s !important;
 }
+
 .modal .form_integration_block input:focus,
 .modal .form_integration_block textarea:focus,
 .modal .form_integration_block select:focus {
@@ -1362,74 +1362,116 @@ footer {
     background: #fff !important;
     box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.2) !important;
 }
+
 .modal .form_integration_block input::placeholder,
 .modal .form_integration_block textarea::placeholder {
     color: #c7c7cc !important;
 }
 
-/* Лейблы */
 .modal .form_integration_block label {
+    color: var(--charcoal) !important;
+    font-family: 'Inter', sans-serif !important;
     font-size: 0.8rem !important;
     font-weight: 600 !important;
     margin-bottom: 0.35rem !important;
-    color: var(--text-secondary) !important;
-}
-.modal .form_integration_block a {
-    color: var(--text-secondary) !important;
-    text-decoration: none !important;
-    border-bottom: 1px dashed #ccc !important;
+    display: block !important;
 }
 
-/* Кнопка отправки */
+/* Submit / generic buttons */
 .modal .form_integration_block button[type="submit"],
-.modal .form_integration_block button {
+.modal .form_integration_block input[type="submit"],
+.modal .form_integration_block .btn,
+.modal .form_integration_block .submit-btn {
     width: 100% !important;
-    padding: 0.875rem !important;
-    white-space: nowrap !important;
+    padding: 0.875rem 1.5rem !important;
     background: var(--charcoal) !important;
     color: #fff !important;
-    font-size: 1rem !important;
-    font-weight: 700 !important;
     font-family: 'Inter', sans-serif !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
     border: none !important;
     border-radius: 14px !important;
     cursor: pointer !important;
-    transition: all 0.25s ease !important;
+    transition: all 0.2s !important;
 }
-.modal .form_integration_block button:hover {
+
+.modal .form_integration_block button[type="submit"]:hover,
+.modal .form_integration_block input[type="submit"]:hover,
+.modal .form_integration_block .btn:hover,
+.modal .form_integration_block .submit-btn:hover {
     background: #333 !important;
 }
 
-/* Hide Salebot messenger icon on button */
-.modal .form_integration_block button img,
-.modal .form_integration_block .salebot_button img {
+/* Hide Salebot icons, keep text */
+.modal .form_integration_block .salebot_button img,
+.modal .form_integration_block .salebot_button svg,
+.modal .form_integration_block .salebot_button .mes_ident {
     display: none !important;
 }
 
-/* Чекбоксы — toggle switch */
+.modal .form_integration_block .custom_social_btn_container {
+    height: auto !important;
+    min-height: 0 !important;
+}
+
+/* Base salebot button style */
+.modal .form_integration_block .salebot_button {
+    width: 100% !important;
+    padding: 1rem 2rem !important;
+    color: #fff !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+    border: none !important;
+    border-radius: 14px !important;
+    cursor: pointer !important;
+    transition: all 0.2s !important;
+    margin-bottom: 0.5rem !important;
+}
+
+/* Telegram button */
+.modal .form_integration_block .tg_link {
+    background: #2AABEE !important;
+}
+.modal .form_integration_block .tg_link:hover {
+    background: #229ED9 !important;
+}
+
+/* VK button */
+.modal .form_integration_block .vk_link {
+    background: #0077FF !important;
+}
+.modal .form_integration_block .vk_link:hover {
+    background: #0066DD !important;
+}
+
+/* MAX button */
+.modal .form_integration_block .max_link {
+    background: linear-gradient(90deg, #527CF2 0%, #9040C8 100%) !important;
+}
+.modal .form_integration_block .max_link:hover {
+    background: linear-gradient(90deg, #4870E0 0%, #8038B8 100%) !important;
+}
+
+/* Toggle switch */
 .modal .form_integration_block input[type="checkbox"] {
     -webkit-appearance: none !important;
-    -moz-appearance: none !important;
     appearance: none !important;
     width: 44px !important;
     height: 24px !important;
     min-width: 44px !important;
-    max-width: 44px !important;
-    min-height: 24px !important;
-    max-height: 24px !important;
-    background: #d4d4d0 !important;
+    background: #e5e5ea !important;
     background-image: none !important;
     border-radius: 12px !important;
     border: none !important;
     position: relative !important;
     cursor: pointer !important;
+    transition: background 0.2s !important;
     padding: 0 !important;
     margin: 0 !important;
-    flex-shrink: 0 !important;
-    box-shadow: none !important;
-    outline: none !important;
-    transition: background 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    vertical-align: middle !important;
 }
+
 .modal .form_integration_block input[type="checkbox"]::after {
     content: '' !important;
     position: absolute !important;
@@ -1439,22 +1481,25 @@ footer {
     height: 20px !important;
     background: #fff !important;
     border-radius: 50% !important;
-    transition: transform 0.25s !important;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.15) !important;
+    transition: transform 0.2s ease !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15) !important;
     border: none !important;
 }
+
 .modal .form_integration_block input[type="checkbox"]:checked {
     background: var(--gold) !important;
     background-image: none !important;
 }
+
 .modal .form_integration_block input[type="checkbox"]::before {
     display: none !important;
 }
+
 .modal .form_integration_block input[type="checkbox"]:checked::after {
     transform: translateX(20px) !important;
 }
 
-/* Выравнивание чекбокс + текст */
+/* Checkbox + text alignment */
 .modal .form_integration_block div:has(> input[type="checkbox"]),
 .modal .form_integration_block label:has(> input[type="checkbox"]),
 .modal .form_integration_block p:has(> input[type="checkbox"]) {
@@ -1462,6 +1507,7 @@ footer {
     align-items: center !important;
     gap: 0.625rem !important;
 }
+
 .modal .form_integration_block div:has(> input[type="checkbox"]) a,
 .modal .form_integration_block div:has(> input[type="checkbox"]) label,
 .modal .form_integration_block div:has(> input[type="checkbox"]) span,
