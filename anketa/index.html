@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Закрытый канал предзаписи — FIN-RA</title>
+  <link rel="icon" href="https://fin-ra.ru/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:       #C9A84C;
+      --gold-light: #D4AF37;
+      --gold-dark:  #B8962A;
+      --bg:         #0E0A06;
+      --bg-1:       #161009;
+      --bg-2:       #1C1510;
+      --text:       #F5EFE3;
+      --text-muted: rgba(245,239,227,0.55);
+      --border:     rgba(201,168,76,0.2);
+      --radius-card: 18px;
+      --radius-btn:  50px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100svh;
+      overflow-x: hidden;
+    }
+
+    /* Ambient glow */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -200px; left: 50%;
+      transform: translateX(-50%);
+      width: 800px; height: 600px;
+      background: radial-gradient(ellipse, rgba(201,168,76,0.1) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 0 20px 64px;
+    }
+
+    /* ── Лого ── */
+    .logo-bar {
+      display: flex;
+      justify-content: center;
+      padding: 36px 0 44px;
+    }
+    .logo {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+    .logo span { color: var(--gold); }
+
+    /* ── Бейдж ── */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.35);
+      border-radius: 50px;
+      padding: 7px 18px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 22px;
+    }
+    .badge-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+      animation: glow-pulse 2s ease-in-out infinite;
+    }
+    @keyframes glow-pulse {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(201,168,76,0.6); }
+      50% { opacity: 0.7; box-shadow: 0 0 0 4px rgba(201,168,76,0); }
+    }
+
+    /* ── Hero ── */
+    .hero {
+      text-align: center;
+      margin-bottom: 36px;
+      animation: fadeInUp 0.5s ease both;
+    }
+    .hero h1 {
+      font-size: clamp(26px, 6vw, 38px);
+      font-weight: 900;
+      line-height: 1.18;
+      margin-bottom: 14px;
+      letter-spacing: -0.02em;
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, #D4AF37 0%, #C9A84C 50%, #B8962A 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    /* ── Шаги ── */
+    .steps {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .step-num {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(201,168,76,0.4);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+    .step-arrow {
+      color: rgba(201,168,76,0.3);
+      font-size: 14px;
+    }
+
+    /* ── Карточки ── */
+    .cards {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+    .card {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      background: var(--bg-1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 20px;
+      transition: border-color 0.2s, transform 0.2s;
+      animation: fadeInUp 0.5s ease both;
+    }
+    .card:nth-child(1) { animation-delay: 0.1s; }
+    .card:nth-child(2) { animation-delay: 0.2s; }
+    .card:hover {
+      border-color: rgba(201,168,76,0.4);
+      transform: translateY(-2px);
+    }
+    .card-icon {
+      font-size: 28px;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .card-body {}
+    .card-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 5px;
+      line-height: 1.3;
+    }
+    .card-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .card-tag {
+      display: inline-block;
+      margin-top: 8px;
+      background: rgba(201,168,76,0.12);
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 50px;
+      padding: 3px 10px;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+
+    /* ── Разделитель ── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(201,168,76,0.25), transparent);
+    }
+    .divider span {
+      font-size: 11px;
+      font-weight: 700;
+      color: rgba(201,168,76,0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      white-space: nowrap;
+    }
+
+    /* ── Блок формы ── */
+    .form-box {
+      background: #fff;
+      border-radius: var(--radius-card);
+      padding: 32px 28px 28px;
+      animation: fadeInUp 0.5s ease 0.3s both;
+    }
+    .form-title {
+      text-align: center;
+      font-size: 17px;
+      font-weight: 800;
+      color: #1C1510;
+      margin-bottom: 5px;
+    }
+    .form-sub {
+      text-align: center;
+      font-size: 13px;
+      color: rgba(28,21,16,0.45);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    /* Salebot overrides */
+    .form_integration_block,
+    .form_integration_block > *:first-child {
+      margin-top: 0 !important;
+      padding-top: 0 !important;
+    }
+    .form_integration_block .tg_link {
+      background: #2AABEE !important;
+      color: #fff !important;
+      border: none !important;
+      border-radius: 10px !important;
+      padding: 10px 16px !important;
+      font-weight: 600 !important;
+      font-size: 14px !important;
+      width: 100% !important;
+      display: block !important;
+      cursor: pointer !important;
+      margin-bottom: 8px !important;
+    }
+
+    /* ── Футер ── */
+    .footer {
+      text-align: center;
+      margin-top: 44px;
+      font-size: 12px;
+      color: rgba(245,239,227,0.2);
+      line-height: 1.7;
+    }
+    .footer a {
+      color: rgba(201,168,76,0.4);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer a:hover { color: var(--gold); }
+
+    /* ── Анимации ── */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Лого -->
+  <div class="logo-bar">
+    <div class="logo">FIN<span>-RA</span></div>
+  </div>
+
+  <!-- Герой -->
+  <div class="hero">
+    <div style="display:flex;justify-content:center;margin-bottom:20px;">
+      <div class="badge">
+        <span class="badge-dot"></span>
+        Закрытый канал предзаписи
+      </div>
+    </div>
+    <h1>Заполните анкету —<br>попадёте в <em>закрытый канал</em></h1>
+    <p>Там вас ждут предложения по недвижимости, которых нет в открытом доступе, и первая информация о запуске FIN-RA+.</p>
+  </div>
+
+  <!-- Шаги -->
+  <div class="steps">
+    <div class="step"><span class="step-num">1</span> Анкета</div>
+    <span class="step-arrow">→</span>
+    <div class="step"><span class="step-num">2</span> Закрытый канал</div>
+    <span class="step-arrow">→</span>
+    <div class="step"><span class="step-num">3</span> FIN-RA+</div>
+  </div>
+
+  <!-- Карточки -->
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">🏠</div>
+      <div class="card-body">
+        <div class="card-title">Закрытые предложения по недвижимости</div>
+        <div class="card-desc">Объекты, которые не появятся в открытом доступе — только для участников канала предзаписи.</div>
+        <span class="card-tag">Сразу после входа</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🥇</div>
+      <div class="card-body">
+        <div class="card-title">Приоритетный доступ к FIN-RA+</div>
+        <div class="card-desc">Подписка Дмитрия Толстякова с готовыми решениями — куда инвестировать прямо сейчас. Участники канала узнают первыми.</div>
+        <span class="card-tag">Скоро</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Форма -->
+  <div class="divider"><span>Заполнить анкету</span></div>
+
+  <div class="form-box">
+    <div class="form-title">Заполнить анкету предзаписи</div>
+    <div class="form-sub">Нажмите кнопку — анкета откроется в Telegram</div>
+
+    <script src='https://salebot.pro/js/form_scripts.js'></script>
+    <div class='form_integration_block'></div>
+    <script>
+      FormIntegration.init({
+        project_id: 317313,
+        guid: 'db2e62d1fdb79740074db3ed778a6cce'
+      });
+    </script>
+  </div>
+
+  <!-- Футер -->
+  <div class="footer">
+    <p>© 2026 FIN-RA — инвестиции в недвижимость</p>
+    <p style="margin-top:6px;">
+      <a href="https://conf.fin-ra.pro/">Главная</a> ·
+      <a href="https://conf.fin-ra.pro/program/">Программа конференции</a>
+    </p>
+  </div>
+
+</div>
+
+<script>
+  function styleSalebotBtns() {
+    document.querySelectorAll('.tg_link').forEach(function(el) {
+      el.style.setProperty('background', '#2AABEE', 'important');
+      el.style.setProperty('color', '#fff', 'important');
+      el.style.setProperty('border', 'none', 'important');
+      el.style.setProperty('border-radius', '10px', 'important');
+      el.style.setProperty('padding', '10px 16px', 'important');
+      el.style.setProperty('font-weight', '600', 'important');
+      el.style.setProperty('font-size', '14px', 'important');
+      el.style.setProperty('width', '100%', 'important');
+      el.style.setProperty('display', 'block', 'important');
+      el.style.setProperty('cursor', 'pointer', 'important');
+      el.style.setProperty('margin-bottom', '8px', 'important');
+    });
+    // Скрываем VK и MAX если есть
+    document.querySelectorAll('.vk_link, .max_link').forEach(function(el) {
+      el.style.setProperty('display', 'none', 'important');
+    });
+    // Убираем пустые блоки-распорки Salebot
+    var block = document.querySelector('.form_integration_block');
+    if (block && block.firstElementChild) {
+      block.firstElementChild.style.setProperty('margin-top', '0', 'important');
+      block.firstElementChild.style.setProperty('padding-top', '0', 'important');
+    }
+  }
+
+  new MutationObserver(styleSalebotBtns)
+    .observe(document.body, { childList: true, subtree: true });
+</script>
+</body>
+</html>
