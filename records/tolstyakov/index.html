@@ -462,8 +462,9 @@
       .page-header { padding: 40px 0 32px; }
       .speaker-name { font-size: 32px; }
       .stats-grid { grid-template-columns: 1fr; }
-      .page-nav { grid-template-columns: 1fr 1fr; gap: 8px; }
-      .page-nav .nav-btn.center-btn { grid-column: 1 / -1; }
+      .page-nav { display: flex; flex-wrap: wrap; gap: 8px; }
+      .page-nav .nav-btn.center-btn { order: -1; flex: 0 0 100%; justify-content: center; }
+      .page-nav .nav-btn.prev, .page-nav .nav-btn.next { flex: 1 1 0; min-width: 0; justify-content: center; }
       .quote-block { padding: 32px 24px 24px; }
       .quote-mark { font-size: 72px; left: 20px; }
     }
