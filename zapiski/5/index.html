@@ -57,6 +57,12 @@
       display: flex; align-items: center; justify-content: center;
       font-size: 22px; font-weight: 900; color: var(--gold); letter-spacing: -0.03em;
       box-shadow: 0 0 0 4px rgba(201,168,76,0.07);
+      overflow: hidden;
+    }
+    .speaker-avatar img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      border-radius: 50%;
     }
     .speaker-info { flex: 1; }
     .speaker-name {
@@ -169,6 +175,24 @@
     }
     .case-big.positive { color: #6ECC7A; }
     .case-desc { font-size: 11px; color: var(--muted); line-height: 1.5; font-weight: 500; }
+
+    /* Stats grid */
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+    .stat-card {
+      background: var(--bg1); border: 1px solid var(--border); border-radius: 14px;
+      padding: 22px 20px; position: relative; overflow: hidden;
+      transition: border-color .2s, transform .2s;
+    }
+    .stat-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--gold-d), var(--gold-l), transparent);
+    }
+    .stat-card:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-2px); }
+    .stat-big {
+      font-size: clamp(22px, 3vw, 30px); font-weight: 900; color: var(--gold);
+      line-height: 1; margin-bottom: 8px; font-variant-numeric: tabular-nums;
+    }
+    .stat-desc { font-size: 12px; color: var(--muted); line-height: 1.5; font-weight: 500; }
 
     /* Tips */
     .tips { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 48px; }
@@ -291,7 +315,9 @@
 <header class="page-header">
   <div class="talk-number">Выступление 05</div>
   <div class="speaker-block">
-    <div class="speaker-avatar">НО</div>
+    <div class="speaker-avatar">
+      <img src="../../images/ardonskaya.jpg" alt="Наталья Ордонская">
+    </div>
     <div class="speaker-info">
       <div class="speaker-name">Наталья Ордонская</div>
       <div class="speaker-role">Со-основатель программы «Инвес-Зарплата»</div>
@@ -340,7 +366,7 @@
     </li>
     <li class="thesis">
       <div class="thesis-num">4</div>
-      <div class="thesis-text"><strong>Лучший выбор объекта:</strong> массовые ЖК крупных застройщиков в спальных районах Москвы и области (нехватка хранения — гарантированный спрос).</div>
+      <div class="thesis-text"><strong>Лучший выбор объекта:</strong> ЖК-«корабли» без балконов у крупных застройщиков. Работает не только в Москве — мониторинг ведётся по <strong>53 городам России</strong>. Максимальный процент предложений для всех: Калининград и Владивосток, в СПб — лишь 8% ЖК, в Москве — 15%.</div>
     </li>
     <li class="thesis">
       <div class="thesis-num">5</div>
@@ -377,11 +403,78 @@
         <div class="case-desc">рост кладовки №1: продана 326 → 780 тыс через 1.5 года</div>
       </div>
       <div class="case-card">
-        <div class="case-big positive">880 тыс</div>
-        <div class="case-desc">получено с 1 кладовки при вложении 326 тыс</div>
+        <div class="case-big positive">860 тыс</div>
+        <div class="case-desc">суммарно получено с 1 кладовки (продажа 780К + пассивный доход) при вложении 326 тыс</div>
       </div>
     </div>
   </div>
+
+  <!-- Рыночная динамика 2025-2026 -->
+  <div class="block-label">Рыночная динамика — реальные объекты</div>
+  <div class="stats-grid" style="margin-bottom:48px">
+    <div class="stat-card">
+      <div class="stat-big">+156%</div>
+      <div class="stat-desc">Москва, ЖК Павелецкая нить. Рост у застройщика с сент. 2025. На вторичке +89%</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-big">+99%</div>
+      <div class="stat-desc">Москва, Seligar City. Рост на вторичке за 3 месяца. У застройщика +62%</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-big">+77%</div>
+      <div class="stat-desc">СПб, Аквилон Сторис. Рост у застройщика за полгода. На вторичке +59%</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-big">+80%</div>
+      <div class="stat-desc">Казань, ЖК Нестеровский. Рост на вторичке. У застройщика +70%. Кладовка за 236К продана за 410К за 3 мес.</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-big">+122%</div>
+      <div class="stat-desc">Уфа, ЖК Сосны — рост у застройщика за год на низкой базе (15К → 33К за м²)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-big">+87%</div>
+      <div class="stat-desc">Севастополь, Доброгород. Рост на вторичке. У застройщика +57% (35К → 55К за м²)</div>
+    </div>
+  </div>
+
+  <!-- Три направления 2026 -->
+  <div class="block-label">Три направления на 2026 год</div>
+  <ol class="theses" style="margin-bottom:48px">
+    <li class="thesis">
+      <div class="thesis-num">1</div>
+      <div class="thesis-text"><strong>Ипотека на кладовки — уже работает.</strong> Рост кладовок в миллионниках ~15%/год + аренда ~9% = суммарная доходность ~24%. Ипотека под 24% на правильный объект окупается. Кладовки кредитуют Сбербанк и ВТБ (от 300К в тело кредита).</div>
+    </li>
+    <li class="thesis">
+      <div class="thesis-num">2</div>
+      <div class="thesis-text"><strong>Паркинги — новый тренд.</strong> Утильсбор сделал автомобиль предметом роскоши. Платные парковки расширяются по всем городам. Паркинги дают быстрый спекулятивный рост: хороший паркинг = +1–2 млн за одну сделку.</div>
+    </li>
+    <li class="thesis">
+      <div class="thesis-num">3</div>
+      <div class="thesis-text"><strong>Подвальные помещения.</strong> Покупка и переделка подвалов в кладовки или арендный бизнес. Либо перепродажа как готовый рентный актив. В регионах — наиболее недооценённое направление.</div>
+    </li>
+  </ol>
+
+  <!-- Сценарии по бюджету -->
+  <div class="block-label">Сценарии по бюджету инвестора</div>
+  <ul class="tips" style="margin-bottom:48px">
+    <li class="tip">
+      <div class="tip-check">0</div>
+      <div class="tip-text"><strong>До 100 тыс руб:</strong> инвестировать в недвижимость пока рано. Развивай знания и навыки — аналитики в команде Натальи зарабатывают 1–2 млн/год как дополнительная занятость</div>
+    </li>
+    <li class="tip">
+      <div class="tip-check">100K</div>
+      <div class="tip-text"><strong>100–300 тыс руб:</strong> ищи рассрочки на кладовки и паркинги. Паркинг — хороший старт для быстрой спекуляции с небольшим взносом</div>
+    </li>
+    <li class="tip">
+      <div class="tip-check">300K</div>
+      <div class="tip-text"><strong>300К–1 млн руб:</strong> микс рассрочек и ипотеки. Часть — под пассивный доход, часть — под спекуляцию на паркингах. Просчитывай ипотечное плечо</div>
+    </li>
+    <li class="tip">
+      <div class="tip-check">1M</div>
+      <div class="tip-text"><strong>От 1 млн руб:</strong> полный арсенал — ипотека + рассрочки + кладовки + паркинги + подвалы. Ипотечное плечо позволяет купить больше объектов и быстрее оборачивать капитал</div>
+    </li>
+  </ul>
 
   <!-- Практические советы -->
   <div class="block-label">Практические советы</div>
@@ -400,7 +493,11 @@
     </li>
     <li class="tip">
       <div class="tip-check">✓</div>
-      <div class="tip-text">Не держите вечно: когда <strong>доходность от аренды падает ниже ставки депозита → продавайте</strong></div>
+      <div class="tip-text"><strong>Как работает подбор:</strong> комиссия 20% (для аудитории FIN-RA — 15%, кодовое слово «клад»). Клиент платит сам — застройщик в маркетинг кладовок не вкладывается. Управление: 30% от дохода, 4% при продаже</div>
+    </li>
+    <li class="tip">
+      <div class="tip-check">✓</div>
+      <div class="tip-text"><strong>Осматривайте поэтажные планы:</strong> вентиляционные короба и коммуникации внутри кладовки сокращают полезную площадь. Аквилон исправился, но проблемы ещё встречаются</div>
     </li>
   </ul>
 
