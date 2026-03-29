@@ -150,10 +150,13 @@
     @media (max-width: 640px) {
       nav { padding: 0 16px; }
       .hero { padding: 48px 16px 40px; }
-      .stats-bar { margin: 0 16px 48px; }
-      .stat { padding: 14px 8px; }
-      .stat-num { font-size: 20px; }
-      .stat-label { font-size: 9px; letter-spacing: 0.04em; }
+      .hero p { text-align: left; }
+      .stats-bar { margin: 0 16px 48px; flex-wrap: wrap; }
+      .stat { flex: 0 0 50%; padding: 16px 12px; border-right: none; border-bottom: 1px solid var(--border); }
+      .stat:nth-child(odd) { border-right: 1px solid var(--border); }
+      .stat:nth-child(3), .stat:nth-child(4) { border-bottom: none; }
+      .stat-num { font-size: 22px; }
+      .stat-label { font-size: 10px; letter-spacing: 0.04em; }
       .grid-section { padding: 0 16px 60px; }
       .cards-grid { grid-template-columns: 1fr; }
     }
