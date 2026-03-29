@@ -57,6 +57,12 @@
       display: flex; align-items: center; justify-content: center;
       font-size: 22px; font-weight: 900; color: var(--gold); letter-spacing: -0.03em;
       box-shadow: 0 0 0 4px rgba(201,168,76,0.07);
+      overflow: hidden;
+    }
+    .speaker-avatar img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      border-radius: 50%;
     }
     .speaker-info { flex: 1; }
     .speaker-name {
@@ -313,7 +319,9 @@
 <header class="page-header">
   <div class="talk-number">Выступление 04</div>
   <div class="speaker-block">
-    <div class="speaker-avatar">АР</div>
+    <div class="speaker-avatar">
+      <img src="../../images/rebrikov.jpg" alt="Антон Ребриков">
+    </div>
     <div class="speaker-info">
       <div class="speaker-name">Антон Ребриков</div>
       <div class="speaker-role">Девелопер земельных проектов в Крыму</div>
@@ -362,7 +370,7 @@
     </li>
     <li class="thesis">
       <div class="thesis-num">4</div>
-      <div class="thesis-text">Земля — <strong>фундаментальный актив, не для быстрого дохода</strong>: горизонт 2–5 лет, дисциплина важнее эмоций.</div>
+      <div class="thesis-text">Земля — <strong>фундаментальный актив, не для быстрого дохода</strong>: минимальный горизонт от 3 лет (спекулятивная), девелоперская и инфраструктурная — от 5 лет и выше. Дисциплина важнее эмоций.</div>
     </li>
     <li class="thesis">
       <div class="thesis-num">5</div>
@@ -394,51 +402,136 @@
       <div class="stat-desc">проектов на разных стадиях реализации</div>
     </div>
     <div class="stat-card">
-      <div class="stat-big">2–5 лет</div>
-      <div class="stat-desc">оптимальный инвестиционный горизонт</div>
+      <div class="stat-big">3+ лет</div>
+      <div class="stat-desc">минимальный горизонт для спекулятивной модели. Девелоперская и инфраструктурная — от 5 лет</div>
     </div>
   </div>
 
-  <!-- Три стратегии -->
-  <div class="block-label">Три стратегии</div>
+  <!-- Три модели заработка -->
+  <div class="block-label">Три модели заработка</div>
   <div class="strategy-grid">
     <div class="strategy-card">
-      <div class="strategy-badge"><span class="strategy-badge-dot"></span>Стратегия 1</div>
-      <div class="strategy-name"><em>«Статус»</em></div>
-      <div class="strategy-desc">Купить участок с нижним ВРИ, изменить на более высокий, продать. Рост без физических вложений.</div>
+      <div class="strategy-badge"><span class="strategy-badge-dot"></span>Модель 1</div>
+      <div class="strategy-name"><em>«Спекулятивная»</em></div>
+      <div class="strategy-desc">Купить участок, дождаться роста цены, продать. Простейший вход, минимум усилий со стороны инвестора. Требует точного выбора локации и момента входа.</div>
+      <div class="strategy-flow">
+        <span class="flow-step">Покупка</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step">Рост</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-result">20–50% год. / от 3 лет</span>
+      </div>
+    </div>
+    <div class="strategy-card">
+      <div class="strategy-badge"><span class="strategy-badge-dot"></span>Модель 2</div>
+      <div class="strategy-name"><em>«Девелоперская»</em></div>
+      <div class="strategy-desc">Изменение ВРИ, при необходимости межевание, продажа застройщикам или крупным инвесторам. Требует юридического и проектного сопровождения.</div>
       <div class="strategy-flow">
         <span class="flow-step">Низкий ВРИ</span>
         <span class="flow-arrow">→</span>
         <span class="flow-step">Смена статуса</span>
         <span class="flow-arrow">→</span>
+        <span class="flow-result">40–200% / 5+ лет</span>
+      </div>
+    </div>
+    <div class="strategy-card">
+      <div class="strategy-badge"><span class="strategy-badge-dot"></span>Модель 3</div>
+      <div class="strategy-name"><em>«Инфраструктурная капитализация»</em></div>
+      <div class="strategy-desc">Зайти в голую землю, полностью подвести сети и дороги, создать готовый объект, приносящий доход. Самый зрелый и устойчивый путь — актив работает независимо от рынка.</div>
+      <div class="strategy-flow">
+        <span class="flow-step">Голая земля</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step">Сети, дороги</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-result">Дивидентный доход / 5+ лет</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Три рычага доходности -->
+  <div class="block-label">Три рычага доходности</div>
+  <div class="strategy-grid">
+    <div class="strategy-card">
+      <div class="strategy-badge"><span class="strategy-badge-dot"></span>Рычаг 1</div>
+      <div class="strategy-name"><em>«Статус»</em></div>
+      <div class="strategy-desc">Изменение категории и вида разрешённого использования. Кратно увеличивает стоимость без физических вложений — самый мощный рычаг.</div>
+      <div class="strategy-flow">
+        <span class="flow-step">Сельхоз / низкий ВРИ</span>
+        <span class="flow-arrow">→</span>
         <span class="flow-result">Кратный рост</span>
       </div>
     </div>
     <div class="strategy-card">
-      <div class="strategy-badge"><span class="strategy-badge-dot"></span>Стратегия 2</div>
+      <div class="strategy-badge"><span class="strategy-badge-dot"></span>Рычаг 2</div>
       <div class="strategy-name"><em>«Инфраструктура»</em></div>
-      <div class="strategy-desc">Купить «голую» землю, провести коммуникации (свет, вода, дорога), продать. Небольшие вложения — большой прирост ликвидности.</div>
+      <div class="strategy-desc">Подключение сетей (свет, вода, газ), строительство дорог. Небольшие вложения конвертируются в большой прирост ликвидности.</div>
       <div class="strategy-flow">
         <span class="flow-step">Голый участок</span>
-        <span class="flow-arrow">→</span>
-        <span class="flow-step">Коммуникации</span>
         <span class="flow-arrow">→</span>
         <span class="flow-result">Ликвидность</span>
       </div>
     </div>
     <div class="strategy-card">
-      <div class="strategy-badge"><span class="strategy-badge-dot"></span>Стратегия 3</div>
-      <div class="strategy-name"><em>«Якорный спрос»</em></div>
-      <div class="strategy-desc">Купить участок рядом с крупным госпроектом, держать, пока территория развивается, продать на пике.</div>
+      <div class="strategy-badge"><span class="strategy-badge-dot"></span>Рычаг 3</div>
+      <div class="strategy-name"><em>«Спрос»</em></div>
+      <div class="strategy-desc">Якорные объекты рядом: госпроекты, трассы, крупные кластеры. Трафик и посещаемость формируют устойчивый спрос на землю в локации.</div>
       <div class="strategy-flow">
-        <span class="flow-step">Рядом с госпроектом</span>
+        <span class="flow-step">Госпроект рядом</span>
         <span class="flow-arrow">→</span>
-        <span class="flow-step">Удержание</span>
-        <span class="flow-arrow">→</span>
-        <span class="flow-result">Пик цены</span>
+        <span class="flow-result">Рост спроса</span>
       </div>
     </div>
   </div>
+
+  <!-- Реальные кейсы -->
+  <div class="block-label">Реализованные кейсы</div>
+  <div class="stats-grid" style="margin-bottom:48px">
+    <div class="stat-card">
+      <div class="stat-big">113%</div>
+      <div class="stat-desc"><strong>Эко-пространство:</strong> куплено за 5 млн (сельхоз) → продано за 22 млн. Срок: 3 года. Чистыми годовых</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-big">333%</div>
+      <div class="stat-desc"><strong>Единение:</strong> индивидуальный проект Антона. Вышел в кэш за 6 месяцев. Годовых чистыми</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-big">48%</div>
+      <div class="stat-desc"><strong>Осознанная инвестиция:</strong> вошли за 52 млн → оценка 85 млн. 16 месяцев. Годовых (зафиксировано предложением о покупке)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-big">60%</div>
+      <div class="stat-desc"><strong>Панорама успеха:</strong> стартовали с 25,5 млн. Актуальная оценка получена накануне выступления. Годовых</div>
+    </div>
+  </div>
+
+  <!-- Фильтр рисков -->
+  <div class="block-label">Шесть уровней проверки до входа</div>
+  <ul class="tips" style="margin-bottom:48px">
+    <li class="tip">
+      <div class="tip-check">1</div>
+      <div class="tip-text"><strong>Правоустанавливающие документы</strong> — обременения, ограничения, история перехода права собственности (ЕГРН)</div>
+    </li>
+    <li class="tip">
+      <div class="tip-check">2</div>
+      <div class="tip-text"><strong>Генплан</strong> — зоны застройки, зоны с особыми условиями, допустимые виды использования</div>
+    </li>
+    <li class="tip">
+      <div class="tip-check">3</div>
+      <div class="tip-text"><strong>Вид разрешённого использования (ВРИ)</strong> — соответствие целевой стратегии; от него зависит весь потенциал участка</div>
+    </li>
+    <li class="tip">
+      <div class="tip-check">4</div>
+      <div class="tip-text"><strong>Инфраструктура и стоимость подключения</strong> — листы согласования коммуникаций, технические условия по сетям, оценка дорог</div>
+    </li>
+    <li class="tip">
+      <div class="tip-check">5</div>
+      <div class="tip-text"><strong>Геология и рельеф</strong> (топосъёмка) — специфика Крыма: горы влияют на стоимость освоения участка и возможности застройки</div>
+    </li>
+    <li class="tip">
+      <div class="tip-check">6</div>
+      <div class="tip-text"><strong>Ликвидность + два сценария выхода</strong> — диалог с крупными игроками региона, проработка двух реалистичных путей монетизации с временными горизонтами</div>
+    </li>
+  </ul>
 
   <!-- Практические советы -->
   <div class="block-label">Практические советы</div>
@@ -464,7 +557,7 @@
   <!-- Цитата -->
   <div class="quote-block">
     <div class="quote-mark">"</div>
-    <p class="quote-text">Землю сдаётся только терпеливым инвесторам. Дисциплина важнее эмоций.</p>
+    <p class="quote-text">Земля сдаётся только терпеливым инвесторам. Дисциплина важнее эмоций.</p>
   </div>
 
 </section>
