@@ -297,6 +297,7 @@
     @media (max-width: 640px) {
       nav { padding: 0 16px; }
       .page-header, .video-section, .konspekt, .nav-footer { padding-left: 16px; padding-right: 16px; }
+      .konspekt { padding-bottom: 32px; }
       .speaker-block { gap: 14px; }
       .speaker-avatar { width: 56px; height: 56px; font-size: 17px; }
       .markets-grid { grid-template-columns: 1fr 1fr; }
@@ -305,8 +306,8 @@
       .finra-cta { margin-left: 0; width: 100%; justify-content: center; }
       .nav-footer { flex-wrap: wrap; }
       .nav-btn-catalog { order: -1; flex: 0 0 100%; justify-content: center; }
-      .nav-btn-prev, .nav-btn-next { flex: 1; justify-content: center; }
-      .quote-block { padding: 24px 20px 24px 36px; }
+      .nav-btn-prev, .nav-btn-next { flex: 0 1 calc(50% - 6px); justify-content: center; }
+      .quote-block { padding: 24px 20px 24px 36px; margin-bottom: 24px; }
     }
 
     @keyframes fadeInUp {
