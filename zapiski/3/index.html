@@ -115,6 +115,15 @@
       font-weight: 600;
       color: var(--gold);
       flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 50%;
     }
 
     .speaker-info { flex: 1; }
@@ -630,7 +639,9 @@
     <header class="page-header">
       <div class="talk-number">Выступление 03</div>
       <div class="speaker-row">
-        <div class="avatar">ЕК</div>
+        <div class="avatar">
+          <img src="../../images/kirienko.jpg" alt="Евгений Кириенко">
+        </div>
         <div class="speaker-info">
           <h1 class="speaker-name">Евгений Кириенко</h1>
           <div class="speaker-role">Основатель «Arbat Real Estate», 17 лет в недвижимости</div>
@@ -774,10 +785,69 @@
             <div class="stat-label">ежегодный рост стоимости при правильном выборе локации</div>
           </div>
           <div class="stat-card">
-            <div class="stat-value">0%</div>
-            <div class="stat-label">возможности сдать в аренду в Турции — запрещено для иностранцев</div>
+            <div class="stat-value">10 млн</div>
+            <div class="stat-label">руб — минимальный порог входа на Пхукете. Ниже — неликвид, продать потом сложно</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">+30%</div>
+            <div class="stat-label">укрепление тайского бата к доллару за 10 лет (+10% за последний год)</div>
           </div>
         </div>
+      </div>
+
+      <!-- MOSCOW VS PHUKET -->
+      <div class="block">
+        <div class="block-title">Москва vs Пхукет: одинаковый бюджет — разный результат</div>
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Параметр</th>
+              <th>Москва (20 млн, 45 м²)</th>
+              <th>Пхукет (20 млн, 45 м²)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="market-name">Доход / год</span></td>
+              <td><span class="yield-val">~900 тыс. руб.</span><br><span class="market-sub">75 тыс./мес. после УК и коммуналки</span></td>
+              <td><span class="yield-val">~1,8 млн руб.</span><br><span class="market-sub">7% чистыми в валюте</span></td>
+            </tr>
+            <tr>
+              <td><span class="market-name">Рост цены</span></td>
+              <td><span class="market-sub">0% в сегменте до 30 млн; при срочной продаже дисконт 10–15%</span></td>
+              <td><span class="market-sub">2–3% в год при правильной локации</span></td>
+            </tr>
+            <tr>
+              <td><span class="market-name">Валюта дохода</span></td>
+              <td><span class="market-sub">Рубли</span></td>
+              <td><span class="market-sub">Бат / доллар (бат укрепился к $ на 30% за 10 лет)</span></td>
+            </tr>
+            <tr>
+              <td><span class="market-name">Итог</span></td>
+              <td><span class="verdict no">Уступает</span></td>
+              <td><span class="verdict yes">Доход в 2 раза выше</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- THREE RISKS -->
+      <div class="block">
+        <div class="block-title">Три риска зарубежного инвестора</div>
+        <ol class="theses-list">
+          <li class="thesis-item">
+            <span class="thesis-num">1</span>
+            <span class="thesis-text"><strong style="color:var(--gold)">Неправильная локация.</strong> Даже у топового застройщика плохая локация = плохая аренда и плохая продажа. Ключевые критерии: пешая доступность до моря (15 мин.), близость к якорным объектам (международные школы, крупные ТЦ)</span>
+          </li>
+          <li class="thesis-item">
+            <span class="thesis-num">2</span>
+            <span class="thesis-text"><strong style="color:var(--gold)">Застройщик без капитала.</strong> Продаёт "с колёс" — нет шоурума, нет реализованных объектов. Работайте только с теми, чьи сданные дома можно физически посетить и оценить качество управления</span>
+          </li>
+          <li class="thesis-item">
+            <span class="thesis-num">3</span>
+            <span class="thesis-text"><strong style="color:var(--gold)">Слабая управляющая компания.</strong> Можно купить в красивом комплексе, но если УК не чистит бассейн и не реагирует на жильцов — аренда и ликвидность падают. Оценивайте качество управления в уже сданных объектах того же девелопера</span>
+          </li>
+        </ol>
       </div>
 
       <!-- TIPS -->
@@ -794,7 +864,7 @@
           </li>
           <li class="tip-item">
             <span class="tip-check">✦</span>
-            <span class="tip-text">Пхукет: лучшие районы — Януй, Карон, Найхарн, Раваи (юг острова; стабильный турпоток)</span>
+            <span class="tip-text">Пхукет: ориентируйтесь на центр и север острова (Банктао, Лагуна). Юг был частично затронут цунами, северная и центральная части защищены подводными рифами</span>
           </li>
           <li class="tip-item">
             <span class="tip-check">✦</span>
