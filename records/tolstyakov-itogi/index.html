@@ -184,12 +184,13 @@
       content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
       background: linear-gradient(90deg, transparent, var(--gold-l), var(--gold), transparent);
     }
-    .finra-plus-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+    .finra-plus-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
     .finra-plus-badge {
-      display: inline-flex; align-items: center; gap: 8px;
+      display: inline-block;
       background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.4);
       border-radius: 10px; padding: 8px 16px;
       font-size: 18px; font-weight: 900; color: var(--gold); letter-spacing: 0.1em;
+      white-space: nowrap; flex-shrink: 0;
     }
     .finra-plus-badge span { color: var(--text); }
     .finra-plus-tagline { font-size: 13px; color: var(--muted); line-height: 1.5; }
