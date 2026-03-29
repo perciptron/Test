@@ -57,6 +57,12 @@
       display: flex; align-items: center; justify-content: center;
       font-size: 22px; font-weight: 900; color: var(--gold); letter-spacing: -0.03em;
       box-shadow: 0 0 0 4px rgba(201,168,76,0.1), 0 0 32px rgba(201,168,76,0.12);
+      overflow: hidden;
+    }
+    .speaker-avatar img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      border-radius: 50%;
     }
     .speaker-info { flex: 1; }
     .speaker-name {
@@ -325,7 +331,9 @@
 <header class="page-header">
   <div class="talk-number">Выступление 06</div>
   <div class="speaker-block">
-    <div class="speaker-avatar">ДТ</div>
+    <div class="speaker-avatar">
+      <img src="../../images/tolstyakov.jpg" alt="Дмитрий Толстяков">
+    </div>
     <div class="speaker-info">
       <div class="speaker-name">Дмитрий Толстяков</div>
       <div class="speaker-role">Основатель FIN-RA</div>
@@ -378,7 +386,7 @@
     </li>
     <li class="thesis">
       <div class="thesis-num">5</div>
-      <div class="thesis-text"><strong>FIN-RA+</strong> — новая подписочная платформа: ежемесячные подборки фаворитов по всем классам активов.</div>
+      <div class="thesis-text"><strong>FIN-RA+</strong> — новая подписочная платформа: ежемесячные подборки фаворитов по всем классам активов. Запуск май–июнь 2026. Конференций по недвижимости в 2026 году больше не планируется — эта запись уникальна.</div>
     </li>
   </ol>
 
@@ -401,7 +409,7 @@
       <div class="market-speaker">Антон Ребриков</div>
       <div class="market-stats">
         <div class="market-stat">рост +48–333%</div>
-        <div class="market-stat">горизонт 2–5 лет</div>
+        <div class="market-stat">горизонт от 3–5+ лет</div>
         <div class="market-stat">при правильной стратегии</div>
       </div>
     </div>
@@ -481,7 +489,15 @@
     </li>
     <li class="tip">
       <div class="tip-check">✓</div>
-      <div class="tip-text">Подписка FIN-RA+ — <strong>анкета предзаписи уже открыта</strong> на <a href="https://conf.fin-ra.pro/anketa/" target="_blank">conf.fin-ra.pro/anketa/</a></div>
+      <div class="tip-text"><strong>Закрытый канал с объектами</strong> — Дмитрий открывает канал, куда будут публиковаться конкретные предложения от всех спикеров конференции (Максим, Антон, Женя, Наталья). Доступ как бонус при записи в анкету FIN-RA+</div>
+    </li>
+    <li class="tip">
+      <div class="tip-check">✓</div>
+      <div class="tip-text"><strong>Записывайте инсайты сразу</strong> — не для организатора, для себя. "Мозг запоминает то, что зафиксировано руками." Что вы берёте с этой конференции?</div>
+    </li>
+    <li class="tip">
+      <div class="tip-check">✓</div>
+      <div class="tip-text"><strong>Ретрит в Крыму</strong> — 19–22 апреля, до 30 человек. Дмитрий называет его одним из трёх ключевых мероприятий года. Информация на сайте и в каналах FIN-RA</div>
     </li>
   </ul>
 
