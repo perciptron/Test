@@ -1,0 +1,249 @@
+<!-- FIN-RA: кнопка покупки записи. Вставить в Bizon365 → HTML → Постоянный код -->
+<style>
+  #fra-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 22px;
+    background: linear-gradient(135deg, #D4AF37, #C9A84C, #B8962A);
+    color: #130E09;
+    font-family: 'Montserrat', 'Arial', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 24px rgba(201,168,76,0.45), 0 2px 8px rgba(0,0,0,0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  #fra-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(201,168,76,0.6), 0 4px 12px rgba(0,0,0,0.3);
+  }
+  #fra-btn:active { transform: scale(0.97); }
+  #fra-btn svg { flex-shrink: 0; }
+
+  #fra-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+  #fra-overlay.fra-open { display: flex; }
+
+  #fra-modal {
+    background: #fff;
+    border-radius: 24px;
+    padding: 32px;
+    max-width: 440px;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+    animation: fraSlideUp 0.3s cubic-bezier(0.4,0,0.2,1);
+    max-height: 90dvh;
+    overflow-y: auto;
+  }
+  @keyframes fraSlideUp {
+    from { opacity: 0; transform: translateY(20px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  #fra-close {
+    position: absolute;
+    top: 14px; right: 14px;
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(0,0,0,0.06);
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 50%;
+    font-size: 18px;
+    color: #666;
+    cursor: pointer;
+    line-height: 1;
+  }
+  #fra-close:hover { background: rgba(0,0,0,0.12); color: #111; }
+
+  #fra-modal h2 {
+    font-family: 'Montserrat', 'Arial', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: #111;
+    margin: 0 0 4px;
+  }
+  #fra-modal p {
+    font-family: 'Inter', 'Arial', sans-serif;
+    font-size: 13px;
+    color: #888;
+    margin: 0 0 16px;
+  }
+
+  /* Salebot overrides */
+  #fra-modal .form_integration_block { width: 100%; }
+  #fra-modal .salebot-landing__section,
+  #fra-modal .form_integration_block section { padding: 0 !important; }
+  #fra-modal .form_integration_block input[type="text"],
+  #fra-modal .form_integration_block input[type="email"],
+  #fra-modal .form_integration_block input[type="tel"],
+  #fra-modal .form_integration_block input[type="number"],
+  #fra-modal .form_integration_block textarea,
+  #fra-modal .form_integration_block select {
+    width: 100% !important;
+    background: #f5f5f5 !important;
+    border: 1.5px solid #e0e0e0 !important;
+    border-radius: 12px !important;
+    padding: 12px 16px !important;
+    color: #111 !important;
+    font-family: 'Inter','Arial',sans-serif !important;
+    font-size: 15px !important;
+    outline: none !important;
+    box-sizing: border-box !important;
+  }
+  #fra-modal .form_integration_block input:focus,
+  #fra-modal .form_integration_block textarea:focus {
+    border-color: #C9A84C !important;
+    background: #fff !important;
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.15) !important;
+  }
+  #fra-modal .form_integration_block input::placeholder,
+  #fra-modal .form_integration_block textarea::placeholder { color: #aaa !important; }
+  #fra-modal .form_integration_block label {
+    color: #444 !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    margin-bottom: 5px !important;
+    display: block !important;
+  }
+  #fra-modal .form_integration_block button[type="submit"],
+  #fra-modal .form_integration_block input[type="submit"],
+  #fra-modal .form_integration_block .btn {
+    width: 100% !important;
+    padding: 14px !important;
+    background: linear-gradient(135deg,#D4AF37,#C9A84C,#B8962A) !important;
+    color: #130E09 !important;
+    font-family: 'Montserrat','Arial',sans-serif !important;
+    font-size: 15px !important;
+    font-weight: 800 !important;
+    border: none !important;
+    border-radius: 14px !important;
+    cursor: pointer !important;
+    letter-spacing: 0.03em !important;
+  }
+  #fra-modal .form_integration_block .salebot_button {
+    width: 100% !important;
+    padding: 14px 20px !important;
+    color: #fff !important;
+    font-family: 'Inter','Arial',sans-serif !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    border: none !important;
+    border-radius: 14px !important;
+    cursor: pointer !important;
+    margin-bottom: 8px !important;
+    white-space: nowrap !important;
+    display: block !important;
+  }
+  #fra-modal .form_integration_block .salebot_button img,
+  #fra-modal .form_integration_block .salebot_button svg,
+  #fra-modal .form_integration_block .salebot_button .mes_ident { display: none !important; }
+  #fra-modal .form_integration_block .tg_link { background: #2AABEE !important; }
+  #fra-modal .form_integration_block .vk_link { background: #0077FF !important; }
+  #fra-modal .form_integration_block .max_link { background: linear-gradient(90deg,#527CF2,#9040C8) !important; }
+  #fra-modal .form_integration_block input[type="checkbox"] {
+    -webkit-appearance: none !important; appearance: none !important;
+    width: 44px !important; height: 24px !important; min-width: 44px !important;
+    background: #ddd !important; border-radius: 12px !important; border: none !important;
+    position: relative !important; cursor: pointer !important;
+    transition: background 0.2s !important; padding: 0 !important; margin: 0 !important;
+  }
+  #fra-modal .form_integration_block input[type="checkbox"]::after {
+    content: '' !important; position: absolute !important;
+    top: 2px !important; left: 2px !important;
+    width: 20px !important; height: 20px !important;
+    background: #fff !important; border-radius: 50% !important;
+    transition: transform 0.2s !important;
+  }
+  #fra-modal .form_integration_block input[type="checkbox"]:checked { background: #C9A84C !important; }
+  #fra-modal .form_integration_block input[type="checkbox"]:checked::after { transform: translateX(20px) !important; }
+  #fra-modal .form_integration_block div:has(> input[type="checkbox"]),
+  #fra-modal .form_integration_block label:has(> input[type="checkbox"]) {
+    display: flex !important; align-items: center !important; gap: 10px !important;
+  }
+  #fra-modal .form_integration_block div:has(> input[type="checkbox"]) span,
+  #fra-modal .form_integration_block div:has(> input[type="checkbox"]) a,
+  #fra-modal .form_integration_block label:has(> input[type="checkbox"]) span,
+  #fra-modal .form_integration_block label:has(> input[type="checkbox"]) a {
+    flex: 1 !important; font-size: 12px !important; color: #888 !important; line-height: 1.3 !important;
+  }
+
+  @media (max-width: 480px) {
+    #fra-btn { bottom: 16px; right: 16px; padding: 12px 18px; font-size: 13px; }
+    #fra-modal { padding: 24px 20px; border-radius: 20px; }
+  }
+</style>
+
+<!-- Кнопка -->
+<button id="fra-btn" onclick="fraOpen()">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8 1v10M4 7l4 4 4-4"/><path d="M2 13h12"/>
+  </svg>
+  Купить запись · 500 ₽
+</button>
+
+<!-- Модал -->
+<div id="fra-overlay" onclick="fraOutside(event)">
+  <div id="fra-modal">
+    <button id="fra-close" onclick="fraClose()">×</button>
+    <h2>Доступ к записям</h2>
+    <p>Все выступления после конференции</p>
+    <div class="form_integration_block" id="fra-form"></div>
+  </div>
+</div>
+
+<script>
+  var fraLoaded = false;
+
+  function fraOpen() {
+    document.getElementById('fra-overlay').classList.add('fra-open');
+    document.body.style.overflow = 'hidden';
+    if (!fraLoaded) {
+      fraLoaded = true;
+      var s = document.createElement('script');
+      s.src = 'https://salebot.pro/js/form_scripts.js';
+      s.onload = function() {
+        FormIntegration.init({
+          project_id: 317313,
+          guid: '4965f149cf3f331b35119e0787e32842',
+          container: document.getElementById('fra-form')
+        });
+      };
+      document.head.appendChild(s);
+    }
+  }
+
+  function fraClose() {
+    document.getElementById('fra-overlay').classList.remove('fra-open');
+    document.body.style.overflow = '';
+  }
+
+  function fraOutside(e) {
+    if (e.target === document.getElementById('fra-overlay')) fraClose();
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') fraClose();
+  });
+</script>
