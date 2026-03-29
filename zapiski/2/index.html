@@ -533,6 +533,22 @@
       .quote-block { padding: 32px 24px 24px; }
       .quote-mark { font-size: 72px; left: 20px; }
     }
+    /* ── MATERIALS ── */
+    .materials-section { max-width: 860px; margin: 0 auto; padding: 0 40px 48px; }
+    .materials-label { font-size: 11px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: .1em; display: flex; align-items: center; gap: 12px; margin-bottom: 16px; white-space: nowrap; }
+    .materials-label::before, .materials-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .materials-grid { display: flex; flex-direction: column; gap: 10px; }
+    .material-card { display: flex; align-items: center; gap: 16px; background: var(--bg1); border: 1px solid var(--border); border-radius: 14px; padding: 16px 20px; text-decoration: none; color: var(--text); transition: border-color .2s, transform .2s; }
+    .material-card:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-1px); }
+    .mat-icon { width: 40px; height: 40px; border-radius: 10px; background: rgba(201,168,76,0.1); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--gold); }
+    .mat-info { flex: 1; min-width: 0; }
+    .mat-type { font-size: 10px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: .08em; display: block; margin-bottom: 3px; }
+    .mat-name { font-size: 14px; font-weight: 600; color: var(--text); }
+    .mat-arrow { color: var(--gold); flex-shrink: 0; opacity: .6; }
+    .material-card:hover .mat-arrow { opacity: 1; }
+    .material-card.tg .mat-icon { background: rgba(42,171,238,0.1); border-color: rgba(42,171,238,0.25); color: #2AABEE; }
+    .material-card.tg .mat-type { color: #2AABEE; }
+    @media (max-width: 640px) { .materials-section { padding: 0 16px 40px; } }
   </style>
 </head>
 <body>
@@ -762,6 +778,23 @@
         </div>
       </div>
 
+    </section>
+
+    <!-- MATERIALS -->
+    <section class="materials-section">
+      <div class="materials-label">Материалы выступления</div>
+      <div class="materials-grid">
+        <a href="https://drive.google.com/file/d/1-GES5RQsA1qFMZAIPeZ87a4g6OmTjDo7/view?usp=sharing" class="material-card" target="_blank" rel="noopener noreferrer">
+          <div class="mat-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <div class="mat-info">
+            <span class="mat-type">Презентация спикера</span>
+            <span class="mat-name">Курортная недвижимость в Крыму</span>
+          </div>
+          <svg class="mat-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+      </div>
     </section>
 
     <!-- PAGE NAVIGATION -->
