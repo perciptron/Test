@@ -314,6 +314,9 @@
     .page-header { animation: fadeInUp .5s ease both; }
     .video-section { animation: fadeInUp .5s ease .1s both; }
     .konspekt { animation: fadeInUp .5s ease .15s both; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
   </style>
 </head>
 <body>
