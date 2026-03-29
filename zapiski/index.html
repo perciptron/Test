@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Записи конференции — День доходной недвижимости | FIN-RA</title>
+  <link rel="icon" href="https://fin-ra.ru/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --gold: #C9A84C; --gold-l: #D4AF37; --gold-d: #B8962A;
+      --bg: #0E0A06; --bg1: #161009; --bg2: #1C1510;
+      --text: #F5EFE3; --muted: rgba(245,239,227,0.55);
+      --border: rgba(201,168,76,0.2);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Montserrat', Arial, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+    body::before {
+      content: ''; position: fixed; top: -200px; left: 50%; transform: translateX(-50%);
+      width: 900px; height: 600px;
+      background: radial-gradient(ellipse, rgba(201,168,76,0.09) 0%, transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
+
+    /* Nav */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(14,10,6,0.85); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo { font-size: 16px; font-weight: 900; letter-spacing: 0.14em; text-decoration: none; color: var(--text); }
+    .nav-logo span { color: var(--gold); }
+    .nav-link { font-size: 12px; font-weight: 600; color: var(--muted); text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; transition: color .2s; }
+    .nav-link:hover { color: var(--gold); }
+
+    /* Hero */
+    .hero { position: relative; z-index: 1; text-align: center; padding: 72px 24px 56px; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 50px; padding: 6px 16px;
+      font-size: 11px; font-weight: 700; color: var(--gold);
+      text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 24px;
+    }
+    .hero-eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 5vw, 52px); font-weight: 600;
+      line-height: 1.1; margin-bottom: 16px; letter-spacing: -0.01em;
+    }
+    .hero h1 em { font-style: italic; color: var(--gold); }
+    .hero p { font-size: 15px; color: var(--muted); line-height: 1.7; max-width: 480px; margin: 0 auto; }
+
+    /* Stats bar */
+    .stats-bar {
+      position: relative; z-index: 1;
+      display: flex; justify-content: center; gap: 0;
+      max-width: 640px; margin: 0 auto 64px;
+      background: var(--bg1); border: 1px solid var(--border); border-radius: 16px;
+      overflow: hidden;
+    }
+    .stat { flex: 1; padding: 20px; text-align: center; border-right: 1px solid var(--border); }
+    .stat:last-child { border-right: none; }
+    .stat-num { font-size: 24px; font-weight: 900; color: var(--gold); display: block; margin-bottom: 4px; }
+    .stat-label { font-size: 11px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+
+    /* Grid */
+    .grid-section { position: relative; z-index: 1; max-width: 1080px; margin: 0 auto; padding: 0 24px 80px; }
+    .grid-section h2 { font-size: 13px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 28px; }
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+
+    .speaker-card {
+      background: var(--bg1); border: 1px solid var(--border); border-radius: 18px;
+      padding: 24px; text-decoration: none; color: inherit;
+      display: flex; flex-direction: column; gap: 16px;
+      transition: border-color .2s, transform .2s, box-shadow .2s;
+      position: relative; overflow: hidden;
+    }
+    .speaker-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0; transition: opacity .3s;
+    }
+    .speaker-card:hover { border-color: rgba(201,168,76,0.45); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
+    .speaker-card:hover::before { opacity: 1; }
+
+    .card-header { display: flex; align-items: center; gap: 14px; }
+    .card-avatar {
+      width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0;
+      background: var(--bg2); border: 1.5px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 900; color: var(--gold); letter-spacing: -0.02em;
+    }
+    .card-meta { flex: 1; min-width: 0; }
+    .card-name { font-size: 15px; font-weight: 800; color: var(--text); margin-bottom: 3px; }
+    .card-role { font-size: 11px; color: var(--muted); font-weight: 500; line-height: 1.4; }
+    .card-num {
+      font-size: 11px; font-weight: 700; color: rgba(201,168,76,0.4);
+      font-family: 'Cormorant Garamond', serif; font-size: 20px;
+    }
+
+    .card-topic { font-size: 14px; font-weight: 700; color: var(--text); line-height: 1.4; }
+
+    .card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 50px; padding: 3px 10px;
+      font-size: 10px; font-weight: 700; color: var(--gold);
+      text-transform: uppercase; letter-spacing: 0.07em;
+    }
+
+    .card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; }
+    .card-duration { font-size: 12px; color: var(--muted); font-weight: 600; }
+    .card-cta {
+      font-size: 12px; font-weight: 700; color: var(--gold);
+      display: flex; align-items: center; gap: 5px; text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .card-cta svg { transition: transform .2s; }
+    .speaker-card:hover .card-cta svg { transform: translateX(3px); }
+
+    /* Footer */
+    footer {
+      position: relative; z-index: 1; text-align: center;
+      padding: 32px 24px; border-top: 1px solid var(--border);
+      font-size: 12px; color: rgba(245,239,227,0.2);
+    }
+    footer a { color: rgba(201,168,76,0.4); text-decoration: none; }
+    footer a:hover { color: var(--gold); }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .speaker-card { animation: fadeInUp .5s ease both; }
+    .speaker-card:nth-child(1) { animation-delay: .05s; }
+    .speaker-card:nth-child(2) { animation-delay: .1s; }
+    .speaker-card:nth-child(3) { animation-delay: .15s; }
+    .speaker-card:nth-child(4) { animation-delay: .2s; }
+    .speaker-card:nth-child(5) { animation-delay: .25s; }
+    .speaker-card:nth-child(6) { animation-delay: .3s; }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 16px; }
+      .hero { padding: 48px 16px 40px; }
+      .stats-bar { margin: 0 16px 48px; }
+      .grid-section { padding: 0 16px 60px; }
+      .cards-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="https://conf.fin-ra.pro/" class="nav-logo">FIN<span>-RA</span></a>
+  <a href="https://conf.fin-ra.pro/" class="nav-link">← На главную</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span>28 марта 2026</div>
+  <h1>День доходной<br><em>недвижимости</em></h1>
+  <p>Записи всех выступлений с конспектами — практические стратегии от 5 экспертов</p>
+</div>
+
+<div class="stats-bar">
+  <div class="stat"><span class="stat-num">6</span><span class="stat-label">Выступлений</span></div>
+  <div class="stat"><span class="stat-num">5+</span><span class="stat-label">Часов контента</span></div>
+  <div class="stat"><span class="stat-num">4</span><span class="stat-label">Рынка недвижимости</span></div>
+  <div class="stat"><span class="stat-num">350+</span><span class="stat-label">Участников</span></div>
+</div>
+
+<section class="grid-section">
+  <h2>Все выступления</h2>
+  <div class="cards-grid">
+
+    <a href="1/" class="speaker-card">
+      <div class="card-header">
+        <div class="card-avatar">ДТ</div>
+        <div class="card-meta">
+          <div class="card-name">Дмитрий Толстяков</div>
+          <div class="card-role">Основатель FIN-RA, ведущий конференции</div>
+        </div>
+        <div class="card-num">01</div>
+      </div>
+      <div class="card-topic">Открытие. Инвестиции в недвижимость как система — не поиск самой доходной идеи</div>
+      <div class="card-tags"><span class="tag">Стратегия</span><span class="tag">Портфель</span><span class="tag">Философия</span></div>
+      <div class="card-footer">
+        <span class="card-duration">~26 мин</span>
+        <span class="card-cta">Смотреть <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </a>
+
+    <a href="2/" class="speaker-card">
+      <div class="card-header">
+        <div class="card-avatar">МФ</div>
+        <div class="card-meta">
+          <div class="card-name">Максим Фирсов</div>
+          <div class="card-role">Основатель АН «Свои» в Крыму</div>
+        </div>
+        <div class="card-num">02</div>
+      </div>
+      <div class="card-topic">Стратегии инвестирования в курортную недвижимость Крыма — три зоны, три модели</div>
+      <div class="card-tags"><span class="tag">Крым</span><span class="tag">Курортная</span><span class="tag">Ипотека</span></div>
+      <div class="card-footer">
+        <span class="card-duration">~50 мин</span>
+        <span class="card-cta">Смотреть <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </a>
+
+    <a href="3/" class="speaker-card">
+      <div class="card-header">
+        <div class="card-avatar">ЕК</div>
+        <div class="card-meta">
+          <div class="card-name">Евгений Кириенко</div>
+          <div class="card-role">Собственник «Arbat Real Estate», наставник «Терра Таиланд»</div>
+        </div>
+        <div class="card-num">03</div>
+      </div>
+      <div class="card-topic">Сравнение Москвы, Бали, Камбоджи, Вьетнама и Пхукета — где выгоднее купить квартиру за 20 млн</div>
+      <div class="card-tags"><span class="tag">Пхукет</span><span class="tag">Азия</span><span class="tag">Сравнение</span></div>
+      <div class="card-footer">
+        <span class="card-duration">~67 мин</span>
+        <span class="card-cta">Смотреть <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </a>
+
+    <a href="4/" class="speaker-card">
+      <div class="card-header">
+        <div class="card-avatar">АР</div>
+        <div class="card-meta">
+          <div class="card-name">Антон Ребриков</div>
+          <div class="card-role">Девелопер земельных проектов в Крыму</div>
+        </div>
+        <div class="card-num">04</div>
+      </div>
+      <div class="card-topic">Земля Крыма как инвестиционный актив — три модели заработка и реальные кейсы</div>
+      <div class="card-tags"><span class="tag">Земля</span><span class="tag">Крым</span><span class="tag">Девелопмент</span></div>
+      <div class="card-footer">
+        <span class="card-duration">~75 мин</span>
+        <span class="card-cta">Смотреть <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </a>
+
+    <a href="5/" class="speaker-card">
+      <div class="card-header">
+        <div class="card-avatar">НО</div>
+        <div class="card-meta">
+          <div class="card-name">Наталья Ордонская</div>
+          <div class="card-role">Со-основатель программы «Инвес-Зарплата»</div>
+        </div>
+        <div class="card-num">05</div>
+      </div>
+      <div class="card-topic">Инвестиции в кладовки без иллюзий — реальные цифры и стратегия работы в 2026 году</div>
+      <div class="card-tags"><span class="tag">Кладовки</span><span class="tag">Малый бюджет</span><span class="tag">Кейсы</span></div>
+      <div class="card-footer">
+        <span class="card-duration">~67 мин</span>
+        <span class="card-cta">Смотреть <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </a>
+
+    <a href="6/" class="speaker-card">
+      <div class="card-header">
+        <div class="card-avatar">ДТ</div>
+        <div class="card-meta">
+          <div class="card-name">Дмитрий Толстяков</div>
+          <div class="card-role">Основатель FIN-RA</div>
+        </div>
+        <div class="card-num">06</div>
+      </div>
+      <div class="card-topic">Итоги конференции. Анонс подписки FIN-RA+ — что будет внутри и как попасть первым</div>
+      <div class="card-tags"><span class="tag">Итоги</span><span class="tag">FIN-RA+</span><span class="tag">Платформа</span></div>
+      <div class="card-footer">
+        <span class="card-duration">~22 мин</span>
+        <span class="card-cta">Смотреть <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 FIN-RA · <a href="https://conf.fin-ra.pro/">conf.fin-ra.pro</a> · <a href="https://conf.fin-ra.pro/program/">Программа</a></p>
+</footer>
+
+</body>
+</html>
